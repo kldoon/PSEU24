@@ -27,18 +27,40 @@
     </p>
     <hr>
     <h3>HTML Tags</h3>
-    <ul>
-
-        <li>htm</li>
+    <ul style="list-style-type: square;">
+        <li>htm
+            <ul>
+                <li>123
+                    <ol style="list-style-type: upper-roman;">
+                        <li>xyz</li>
+                        <li>zxy</li>
+                        <li>zyx</li>
+                    </ol>
+                </li>
+                <li>321</li>
+                <li>213</li>
+            </ul>
+        </li>
         <li>body</li>
-        <li>div</li>
+        <li>
+            div
+            <h4>Similar tags</h4>
+            <ol>
+                <li>span</li>
+                <li>b</li>
+                <li>title</li>
+            </ol>
+        </li>
     </ul>
     <ol>
-
         <li>htm</li>
         <li>body</li>
         <li>div</li>
     </ol>
+    <a href="https://www.w3schools.com/">
+        <img src="https://hoppingfeet.com/wp-content/uploads/2018/11/IMG_E9565-scaled.jpg" title="bla" width="300"
+            height=auto alt="phot gggggg">
+    </a>
 
     <p> Omar
         Lorem ipsum, dolor <br> <br> <br><br> sit amet consectetur adipisicing elit. Illo incidunt totam quas error
@@ -46,7 +68,6 @@
         deleniti similique. Ab, eum culpa deserunt asperiores <br> pariatur reiciendis magnam quo ipsum reprehenderit
         tenetur facilis soluta alias nobis <br>ad. Totam quaerat vitae excepturi rem provident.
     </p>
-
     <p>
         <del>Lorem ipsum dolor</del>, sit amet consectetur<sub> adipisicing elit</sub>. Expedita non nulla optio ullam
         fugit culpa
@@ -74,7 +95,8 @@
         exercitationem blanditiis perferendis debitis omnis quia ipsa dolor facilis maxime dolorum commodi, similique
         ipsam ducimus?
     </p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus nesciunt repellat excepturi illum minus earum
+    <p style="background-color: rgb(255, 128, 0);">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus
+        nesciunt repellat excepturi illum minus earum
         eos alias nisi, at harum minima eligendi labore voluptate dolorem non incidunt odio odit deleniti culpa dicta
         voluptatibus ducimus eum reprehenderit et. Odio consequatur iste ratione nemo, placeat similique, quas
         repellendus nam molestiae, voluptatibus excepturi error cumque. Magnam error eos sunt quam ut, dolore
@@ -137,6 +159,89 @@
         perspiciatis facere facilis ratione est itaque laborum, fugiat dignissimos nemo tenetur labore maiores eveniet
         voluptate, provident tempore quas quod modi minus. Neque necessitatibus magnam ab natus officia, fugiat,
         pariatur vero dicta exercitationem cupiditate aliquam.</p>
+    <div style="background-color: blue;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore quisquam accusamus ab veniam ad, quo saepe
+            adipisci minima, debitis omnis similique iste quod? Illo voluptas, nisi itaque optio totam commodi!</p>
+        <h1>Hello</h1>
+
+    </div>
+    <div style="background-color: blueviolet;">
+        <img src="https://hoppingfeet.com/wp-content/uploads/2018/11/IMG_E9565-scaled.jpg" height="100" alt="">
+        <li></li>
+    </div>
+    <span style="background-color: aquamarine;">text 1 text 1</span>
+    <span style="background-color: brown;">text 2 text 2</span>
+    <span style="background-color: chartreuse;">text 3 text 3</span>
+    <table border="1">
+        <tr>
+            <td>1</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>C</td>
+        </tr>
+    </table>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th colspan="3">Attributes</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>A</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>B</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>C</td>
+                <td>30</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="2">Total</th>
+                <th>60</th>
+            </tr>
+        </tfoot>
+    </table>
+    <hr>
+    <table border="2" cellpadding="10">
+        <tr>
+            <td bgcolor="#7F00FF">A</td>
+            <td>B</td>
+            <td rowspan="2">C</td>
+        </tr>
+        <tr>
+            <td colspan="2">D</td>
+        </tr>
+        <tr>
+            <td rowspan="2">F</td>
+            <td>G</td>
+            <td>H</td>
+        </tr>
+        <tr>
+            <td colspan="2">I</td>
+            <td>X</td>
+        </tr>
+    </table>
 </body>
 
 </html>
