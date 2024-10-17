@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms</title>
+</head>
+
+<body>
+    <h1>Job Application Form</h1>
+    <form>
+        <div>
+            <label for="fName">Full Name:&nbsp;&nbsp;&nbsp;</label>
+            <input maxlength="50" size="30" id="fName" type="text" name="fullName" placeholder="ex. Ahmad Saeed"
+                required />
+        </div>
+        <br>
+        <div>
+            <label for="idNo">ID Number:&nbsp;</label>
+            <input id="idNo" type="number" max="999999999" min="100000000" name="idNo" placeholder="850850850" required>
+        </div>
+        <br>
+        <div>
+            <label for="email">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input maxlength="50" size="30" id="email" type="email" name="email" required />
+        </div>
+        <br>
+        <!-- pattern="/^05[69]\d{8}$/" -->
+        <div>
+            <label for="phoneNo">Phone Number:</label>
+            <input id="phoneNo" type="tel" name="phone" required />
+        </div>
+        <br>
+        <div>
+            <label for="dob">DOB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input id="dob" type="date" name="dob" max="2007-12-31" />
+        </div>
+        <br>
+        <div>
+            <label>Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input id="gender-m" type="radio" value="male" name="gender" />
+            <label for="gender-m">Male</label>&nbsp;&nbsp;
+            <input id="gender-f" type="radio" value="female" name="gender" />
+            <label for="gender-f">Female</label>
+        </div>
+        <br>
+        <div>
+            <label>Employment Type:&nbsp;</label>
+            <input id="fTime" type="checkbox" name="type" value="full-time">
+            <label for="fTime">Full Time</label>
+            <input id="pTime" type="checkbox" name="type" value="part-time">
+            <label for="pTime">Part Time</label>
+            <input id="seasonal" type="checkbox" name="type" value="seasonal">
+            <label for="seasonal">Seasonal</label>
+        </div>
+        <br>
+        <div>
+            <label for="city">City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select name="city" id="city"> <!-- multiple -->
+                <option value="" disabled selected>Select City</option>
+                <option value="Jerusalem">Jerusalem</option>
+                <option value="Hebron">Hebron</option>
+                <option value="Ramallah">Ramallah</option>
+                <option value="Nablus">Nablus</option>
+                <option value="bet-ummer">Bet Ummar</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="cv">Attach CV:&nbsp;&nbsp;&nbsp;</label>
+            <input id="cv" type="file" name="cv" accept=".pdf,.doc,.docx">
+        </div>
+        <br>
+        <div>
+            <label for="cl">Cover Letter:&nbsp;&nbsp;&nbsp;</label><br>
+            <textarea name="coverLetter" id="cl" cols="60" rows="12" placeholder="Describe your self"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Send My Application">
+            <input type="reset" value="Clear All">
+        </div>
+        <br><br><br><br><br><br>
+    </form>
+</body>
+
+</html>
