@@ -98,3 +98,15 @@ label::after {
     content: '**';
     color: red;
 }
+
+div.form {
+    /* background-image: url("./assets/bg3.png"); */
+    background-image: url("./assets/person.jpg");
+    /* background-size: 30px; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid var(--var-name);
+    /* background-position: center; */
+    background-position-y: -100px;
+    /* background-attachment: fixed; */
+}
