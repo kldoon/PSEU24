@@ -22,7 +22,7 @@
 
 <body>
     <!-- Inline style -->
-    <h1 style="color: #EA4335; text-transform: uppercase;">Burger Restaurant</h1>
+    <h1 id="main-title" style="color: #EA4335; text-transform: uppercase;">Burger Restaurant</h1>
     <p>Lorem ipsum dolor <span class="highlighted">sit amet consectetur</span> adipisicing elit. Molestiae et facere
         ipsam
         repudiandae sapiente aut
@@ -31,18 +31,39 @@
     </p>
     <ul>
         <li id="aa">AAA</li>
-        <li>BBB</li>
+        <li>BBB <span>Pen</span></li>
         <li class="primary-button">CCC</li>
         <li class="highlighted">DDD</li>
     </ul>
-    <p>Lorem ipsum dolor sit amet <span class="highlighted">consectetur adipisicing</span> elit. <span class="primary-button">Provident</span>, a?</p>
+    <p>
+        Lorem ipsum dolor sit amet <span class="highlighted">consectetur adipisicing</span> elit. <span
+            class="primary-button">Provident</span>, a?
+    </p>
     <ol>
         <li>XYZ</li>
         <li>VWM</li>
         <li>OJH</li>
     </ol>
-
+    <span>Key</span><span>Remote</span>
     <div class="primary-button">Click Me</div>
+
+    <p class="primary-button">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quibusdam voluptate
+        quos quae quidem velit tenetur sit natus nobis eaque.
+        <em>
+            <span>Lorem ipsum dolor</span> sit amet consectetur adipisicing elit. Doloremque quibusdam voluptate
+            quos quae quidem velit tenetur sit natus nobis eaque.
+        </em>
+    </p>
+
+    <div class="form">
+        <label for="">
+            <input type="text" placeholder="enter your first name">
+        </label>
+        <input type="text" placeholder="enter your last name" disabled>
+        <input type="email" placeholder="enter your email">
+        <input type="number" placeholder="enter your age">
+    </div>
 </body>
 
 </html>

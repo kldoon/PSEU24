@@ -1,3 +1,9 @@
+/* Universal Selector */
+* {
+    color: #666;
+    --var-name: salmon;
+}
+
 /* Element selector */
 ul,
 ol {
@@ -25,7 +31,9 @@ li {
     border-top-right-radius: 3px;
 }
 
-.primary-button {
+div.primary-button,
+span.primary-button {
+    user-select: none;
     background-color: rgb(148, 191, 254);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 10px;
@@ -37,4 +45,56 @@ li {
     border-bottom-right-radius: 5px;
     border-left: 2px solid blue;
     border-bottom: 1px solid rgb(158, 158, 242);
+}
+
+.primary-button:hover {
+    background-color: rgb(131, 153, 185);
+}
+
+.primary-button:active {
+    color: white;
+    background-color: rgb(93, 116, 151);
+    border-left: 1px solid rgb(28, 28, 38);
+    border-bottom: 0px solid rgb(158, 158, 242);
+    margin-bottom: 1px;
+}
+
+h1#main-title {
+    font-family: cursive;
+    text-shadow: 1px 1px 2px #111;
+}
+
+p span {
+    text-decoration: underline !important;
+    text-decoration-style: double;
+}
+
+p>span {
+    letter-spacing: 5px;
+}
+
+h1+div {}
+
+h1~div {}
+
+input {
+    display: block;
+    margin: 5px;
+}
+
+input:disabled {
+    border: 1px solid --var-name;
+}
+
+input:focus {
+    box-shadow: 2px -1px 5px 1px --var-name;
+}
+
+.form :nth-child(3) {
+    border: 2px solid #000;
+}
+
+label::after {
+    content: '**';
+    color: red;
 }
