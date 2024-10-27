@@ -67,3 +67,53 @@ div.window {
     top: 4px;
     right: 4px;
 }
+
+.back-top {
+    text-decoration: none;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    background-color: rgb(87, 79, 201);
+    border-radius: 50%;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    background-color: #ededed;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+nav ul {
+    margin: 0;
+}
+
+nav ul>li {
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    border-bottom: 2px solid #ff5588;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+nav ul>li:hover {
+    border-bottom: 4px solid #952748;
+    padding-bottom: 3px;
+}
