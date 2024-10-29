@@ -1,0 +1,39 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    background-color: #e6f8de;
+    height: 90vh;
+    /*column, column-reverse row-reverse */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+    align-content: center;
+    row-gap: 5px;
+    /* column-gap: 30px; */
+}
+
+.container>.box {
+    font-weight: bold;
+    font-size: 25px;
+    width: 150px;
+    height: 150px;
+    background-color: #aa88cc;
+    border: 1px solid #725d87;
+    flex-grow: 1;
+    /* flex-shrink: 1; */
+    flex-basis: 25%;
+    box-sizing: border-box;
+}
+
+#B {
+    /*default is 0 */
+    order: -1;
+    /* flex-grow: 2; */
+    /* flex-shrink: 4; */
+    /* align-self: flex-start; */
+}
