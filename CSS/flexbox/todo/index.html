@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">logo here</div>
+      <div class="search">
+        <input type="search" name="search" id="search" placeholder="search" />
+      </div>
+    </nav>
+    <div class="todo">
+      <div class="new">
+        <input type="text" name="new-todo" id="new-todo" placeholder="new" />
+        <button>➕</button>
+      </div>
+      <div class="todos">
+        <p>Todo</p>
+        <ul>
+            <li>
+                <input type="checkbox">
+                <p>1. Git add ➕</p>
+
+              <div>
+                <button>❌</button>
+                <button>✏</button>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox">
+              <p>2. Git commit 🔃</p>
+              <div>
+                <button>❌</button>
+                <button>✏</button>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox">
+              <p>2. Git push ⬆</p>
+              <div>
+                <button>❌</button>
+                <button>✏</button>
+              </div>
+            </li>
+        </ul>
+      </div>
+      <div class="done">
+        <p>Done</p>
+        <ul>
+          <li>
+            <input type="checkbox" checked>
+            <p>4. Go home 🏠</p>
+          </li>
+          <li>
+            <input type="checkbox" checked>
+            <p>5. Eat Lunch 🍝</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
