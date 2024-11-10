@@ -2,6 +2,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     color: brown;
 }
@@ -31,6 +36,19 @@ nav.main ul>li {
     padding: 10px 20px;
     background-color: crimson;
     border-radius: 5px;
+}
+
+div.banner {
+    /* width: 20mm;
+    height: 20mm; */
+    /* width: 1920px; */
+    /* font-size: 960px; */
+    /* height: 100px; */
+    font-size: 25px;
+    /* width: 1em; */
+    width: 100vh;
+    height: 1ex;
+    background-image: linear-gradient(red, green);
 }
 
 @media print {
