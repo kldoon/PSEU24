@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
     <div id="btn" class="button">Click Me</div>
     <br>
     <button onclick="change()">change</button>
+    <hr>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+    <h1>POLICE</h1>
+    <div class="rect"></div>
+
+    <hr>
+    <h2 style="background-color: red; width: 200px;" class="animate__animated animate__backInUp animate__rubberBand">
+        Hello world</h2>
+    <h2 style="background-color: green; width: 200px;" class="animista">Hello world 22</h2>
     <script>
         const change = () => {
             document.getElementById('btn').style.width = (document.getElementById('btn').style.width === '300px' ? '90px' : '300px');
