@@ -1,0 +1,23 @@
+div.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 90px;
+    background-color: rgb(235, 119, 87);
+    cursor: pointer;
+    transition: all 900ms ease-out 0.1s;
+    opacity: 1;
+}
+
+div.button:hover {
+    width: 220px;
+    background-color: rgb(87, 107, 235);
+    /* opacity: 0; */
+}
+
+div.button:active {
+    height: 220px;
+    background-color: rgb(235, 228, 87);
+    opacity: 1;
+}
