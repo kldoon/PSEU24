@@ -1,3 +1,16 @@
 .bordered {
     border: 3px solid rgb(255, 0, 0);
 }
+
+#hi {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    padding: 10px;
+    background-color: brown;
+    color: white;
+    transition: all 0.3s ease-out 200ms;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0;
+}

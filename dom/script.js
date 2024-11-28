@@ -68,3 +68,14 @@ const print = () => {
 
 //     console.log("Results form Calc:" + res);
 // }
+
+const colors = ['green', 'blue', 'red', 'orange', 'purple'];
+const hiEle = document.getElementById('hi');
+const run = () => {
+    const randX = Math.random() * (window.innerWidth - hiEle.offsetWidth);
+    const randY = Math.random() * (window.innerHeight - hiEle.offsetHeight);
+    hiEle.style.left = randX + 'px';
+    hiEle.style.top = randY + 'px';
+    hiEle.innerText = hiEle.innerText === 'Hi' ? 'Bye' : 'Hi';
+    hiEle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+}
