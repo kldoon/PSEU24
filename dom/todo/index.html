@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">logo here</div>
+    <div class="search">
+      <input type="search" name="search" id="search" placeholder="search" />
+    </div>
+  </nav>
+  <div class="todo">
+    <div class="new">
+      <input type="text" name="new-todo" id="new-todo" placeholder="new" />
+      <button onclick="addItem()">➕</button>
+    </div>
+    <div class="todos">
+      <p>Todo</p>
+      <ul id="todos">
+      </ul>
+    </div>
+    <div class="done">
+      <p>Done</p>
+      <ul id="done">
+        <!-- <li>
+          <input type="checkbox" checked>
+          <p>4. Go home 🏠</p>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>

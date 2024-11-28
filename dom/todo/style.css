@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid grey;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.todos {
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.todos,
+.done {
+    width: 70%;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.todos li {
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.todos li div {
+    margin-left: auto;
+}
+
+.done li {
+    display: flex;
+    text-decoration: line-through;
+}
+
+li {
+    border: 1px solid #a6a5a5;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.new {
+    width: 70%;
+    display: flex;
+    column-gap: 10px;
+}
+
+.new input {
+    flex-basis: 90%;
+}
+
+.new button {
+    flex-basis: 10%;
+}
+
+input {
+    padding: 5px 10px;
+}
