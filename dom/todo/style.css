@@ -45,12 +45,17 @@ ul {
 
 .todos li {
     display: flex;
-    /* justify-content: space-between; */
     justify-content: flex-start;
     align-items: center;
 }
 
+.done li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
+.done li div,
 .todos li div {
     margin-left: auto;
 }

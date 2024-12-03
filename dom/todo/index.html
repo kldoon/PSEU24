@@ -13,12 +13,12 @@
   <nav>
     <div class="logo">logo here</div>
     <div class="search">
-      <input type="search" name="search" id="search" placeholder="search" />
+      <input type="search" name="search" id="search" placeholder="search" oninput="search(event)" />
     </div>
   </nav>
   <div class="todo">
     <div class="new">
-      <input type="text" name="new-todo" id="new-todo" placeholder="new" />
+      <input type="text" name="new-todo" id="new-todo" placeholder="new" onkeypress="addItem(event)"/>
       <button onclick="addItem()">➕</button>
     </div>
     <div class="todos">
