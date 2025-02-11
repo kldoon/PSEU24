@@ -1,0 +1,24 @@
+{
+  "name": "pseu_node_example",
+  "version": "1.0.0",
+  "description": "just an example to show nodeJS project\\",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "keywords": [
+    "examples",
+    "nodejs",
+    "pseu"
+  ],
+  "author": "Khaldoun",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.30.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
