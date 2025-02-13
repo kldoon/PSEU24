@@ -1,0 +1,19 @@
+.header {
+    border: 2px solid red;
+    padding: 16px;
+}
+
+.categories {
+    border: 2px solid green;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.category {
+    border: 2px solid blue;
+    padding: 16px;
+    width: 150px;
+    height: 150px;
+}
