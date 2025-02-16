@@ -36,13 +36,24 @@ const data: ICategory[] = [
 ];
 
 const Categories = () => {
+  const handleVisit = (title: string) => {
+    console.log("Visit button has been clicked! " + title);
+  };
+
   return (
     <div className='categories'>
       This is Categories
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores nemo saepe voluptas cupiditate cumque consectetur placeat temporibus ex eos. Aperiam vero saepe dignissimos magni ipsa! Quo dicta omnis deserunt esse.</p>
       <div className="list">
         {
-          data.map(cat => <Category key={cat.id} title={cat.title} image={cat.image} />)
+          data.map(cat => (
+            <Category
+              key={cat.id}
+              title={cat.title}
+              image={cat.image}
+              onVisit={handleVisit}
+            />
+          ))
         }
       </div>
     </div>
