@@ -1,0 +1,7 @@
+.category {
+  border: 2px solid blue;
+  background: linear-gradient(aquamarine 0%, rgb(129, 171, 157) 100%);
+  padding: 16px;
+  width: 150px;
+  height: 150px;
+}
