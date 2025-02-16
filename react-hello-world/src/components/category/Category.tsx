@@ -1,19 +1,22 @@
 import './category.css';
 
-const Category = () => {
-  const title = "This is a category";
-  let catNo = 2;
-  let catImage = 'https://ae-pic-a1.aliexpress-media.com/kf/S9991322d10a744e792870bdc406962edu.jpg_Q90.jpg_.webp';
+interface IProps {
+  title: string;
+  image?: string;
+}
 
+const DEFAULT_IMAGE = 'https://ae-pic-a1.aliexpress-media.com/kf/S87ca085f4d5e49c88b71acecf9c2911ce.png_.webp';
+
+const Category = (props: IProps) => {
   return (
     <div className="category">
-      {title.toUpperCase()} {catNo === 1 ? 'One' : (catNo === 2 ? 'Two' : 'Zero')}
+      {props.title}
       <hr />
       {
-        // Boolean(catImage) ? <img src={catImage} width={150} height={110} alt="cat image" /> : null
-        Boolean(catImage) && <img src={catImage} width={150} height={100} alt="cat image" />
+        Boolean(props.image)
+          ? <img src={props.image} width={150} height={100} alt="cat image" />
+          : <img src={DEFAULT_IMAGE} width={150} height={100} alt="cat image" />
       }
-
     </div>
   );
 }

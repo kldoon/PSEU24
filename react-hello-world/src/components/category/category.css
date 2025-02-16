@@ -5,3 +5,7 @@
   width: 150px;
   height: 150px;
 }
+
+.category img {
+  object-fit: cover;
+}
