@@ -2,6 +2,7 @@ import { ICategory } from '../../types';
 
 import './categories.css';
 import Category from "../category/Category";
+import { useState } from 'react';
 
 const data: ICategory[] = [
   {
@@ -36,12 +37,19 @@ const data: ICategory[] = [
 ];
 
 const Categories = () => {
+  console.log("Categories Rendered");
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+  // let selectedCategory = "";
+
   const handleVisit = (title: string) => {
     console.log("Visit button has been clicked! " + title);
+    // selectedCategory = title;
+    setSelectedCategory(title);
   };
 
   return (
-    <div className='categories'>
+    <div className="categories">
       This is Categories
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores nemo saepe voluptas cupiditate cumque consectetur placeat temporibus ex eos. Aperiam vero saepe dignissimos magni ipsa! Quo dicta omnis deserunt esse.</p>
       <div className="list">
@@ -56,6 +64,7 @@ const Categories = () => {
           ))
         }
       </div>
+      <h3>Selected Category: {selectedCategory}</h3>
     </div>
   );
 }
