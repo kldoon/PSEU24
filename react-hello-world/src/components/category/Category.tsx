@@ -27,7 +27,10 @@ const Category = (props: IProps) => {
         <button
           onClick={() => {
             // counter += 1;
+            console.log(counter);
             setCounter(counter + 1);
+            setCounter(old => old + 1);
+            console.log(counter);
             props.onVisit(props.title);
           }}
         >
