@@ -1,8 +1,11 @@
 .categories {
-  border: 2px solid green;
   padding: 16px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.categories>p {
   margin-bottom: 20px;
 }
 

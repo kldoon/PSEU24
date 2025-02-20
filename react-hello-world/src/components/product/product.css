@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-basis: 24%;
-  border: 2px solid #ff6f61;
+  border: 2px solid #e2e2fa;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;

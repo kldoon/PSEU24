@@ -1,5 +1,6 @@
 .header {
-  border: 2px solid red;
+  background: linear-gradient(90deg, #ded9df 0%, #f0eeff 100%);
+  box-shadow: 1px 1px 10px 0px #d5d5d5;
   padding: 16px;
   display: flex;
   justify-content: space-between;

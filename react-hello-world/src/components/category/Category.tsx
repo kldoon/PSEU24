@@ -14,8 +14,9 @@ const Category = (props: IProps) => {
 
   return (
     <div className="category">
-      {props.title}
-      <hr />
+      <h2>
+        {props.title}
+      </h2>
       {
         Boolean(props.image)
           ? <img src={props.image} width={150} height={100} alt="cat image" />

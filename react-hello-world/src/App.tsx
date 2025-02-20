@@ -105,11 +105,19 @@ function App() {
     setPList(newPList);
   }
 
+  const handleDelete = (index: number) => {
+    setPList(pList.filter((_, i) => i !== index));
+  }
+
   return (
     <div>
       <Header productsCount={pList.length} />
       <Categories />
-      <ProductsList data={pList} onWish={handleAddToWishList} />
+      <ProductsList
+        data={pList}
+        onWish={handleAddToWishList}
+        onDelete={handleDelete}
+      />
     </div>
   )
 }
