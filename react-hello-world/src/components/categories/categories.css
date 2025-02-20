@@ -3,6 +3,7 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .categories>.list {

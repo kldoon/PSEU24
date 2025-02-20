@@ -10,8 +10,6 @@ interface IProps {
 const DEFAULT_IMAGE = 'https://ae-pic-a1.aliexpress-media.com/kf/S87ca085f4d5e49c88b71acecf9c2911ce.png_.webp';
 
 const Category = (props: IProps) => {
-  console.log("Category Rendered [" + props.title + "]");
-  // let counter = 0;
   const [counter, setCounter] = useState<number>(0);
 
   return (
@@ -26,7 +24,6 @@ const Category = (props: IProps) => {
       <div className="actions">
         <button
           onClick={() => {
-            // counter += 1;
             console.log(counter);
             setCounter(counter + 1);
             setCounter(old => old + 1);

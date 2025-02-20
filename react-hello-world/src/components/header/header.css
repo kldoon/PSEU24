@@ -1,4 +1,11 @@
 .header {
   border: 2px solid red;
   padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header h1 {
+  font-size: 15px;
+  margin: 0;
 }

@@ -1,9 +1,10 @@
 import './header.css';
 
-const Header = () => {
+const Header = ({ productsCount }: { productsCount: number }) => {
   return (
     <header className='header'>
-      This is header
+      <h1>This is header</h1>
+      <span>We have <b>{productsCount}</b> Products available</span>
     </header>
   )
 };
