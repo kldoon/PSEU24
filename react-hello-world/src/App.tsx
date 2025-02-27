@@ -3,6 +3,7 @@ import Header from './components/header/Header';
 import Categories from './components/categories/Categories';
 import ProductsList from './components/products-list/ProductsList';
 import { useState } from 'react';
+import WishList from './components/wish-list/WishList';
 
 const PRODUCTS_LIST: Store.IProduct[] = [
   {
@@ -99,13 +100,20 @@ const PRODUCTS_LIST: Store.IProduct[] = [
 
 function App() {
   const [pList, setPList] = useState(PRODUCTS_LIST);
+  const [wishList, setWishList] = useState<Array<number>>([]);
 
   const handleAddToWishList = (id: number) => {
     const newPList = pList.map(prod => prod.id !== id ? prod : { ...prod, wishListCounter: prod.wishListCounter + 1 });
     setPList(newPList);
+    setWishList(Array.from(new Set([...wishList, id])));
+  }
+
+  const handleRemoveFromWishList = (id: number) => {
+    setWishList(old => old.filter(item => item !== id));
   }
 
   const handleDelete = (index: number) => {
+    // setPList([...pList].splice(index, 1));
     setPList(pList.filter((_, i) => i !== index));
   }
 
@@ -113,8 +121,15 @@ function App() {
     <div>
       <Header productsCount={pList.length} />
       <Categories />
+      <hr />
+      <WishList
+        wishList={wishList}
+        productList={pList}
+        onRemove={handleRemoveFromWishList}
+      />
       <ProductsList
         data={pList}
+        wishList={wishList}
         onWish={handleAddToWishList}
         onDelete={handleDelete}
       />

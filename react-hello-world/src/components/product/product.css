@@ -69,6 +69,7 @@ p {
   font-size: 1rem;
   padding: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  filter: grayscale(1);
 }
 
 .product .actions button:first-of-type {
@@ -82,4 +83,10 @@ p {
 .product .actions button:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transform: scale(1.05);
+}
+
+button.wish-button.wishList {
+  filter: none;
+  pointer-events: none;
+  user-select: none;
 }
