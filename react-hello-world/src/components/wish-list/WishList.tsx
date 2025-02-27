@@ -1,4 +1,4 @@
-import './wish-list.css';
+import classes from './wish-list.module.css';
 
 interface IProps {
   wishList: Array<number>;
@@ -10,7 +10,7 @@ const WishList = (props: IProps) => {
   const wishListItems = props.productList.filter(p => props.wishList.includes(p.id));
 
   return (
-    <div className="wish-list">
+    <div className={classes.wishList}>
       <b>Wish List:</b>
       {
         Boolean(wishListItems.length)
@@ -19,7 +19,7 @@ const WishList = (props: IProps) => {
               wishListItems.map(item => (
                 <li>
                   {item.name}
-                  <span className="remove" onClick={() => props.onRemove(item.id)}>❌</span>
+                  <span className={classes.remove} onClick={() => props.onRemove(item.id)}>❌</span>
                 </li>
               ))
             }

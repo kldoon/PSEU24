@@ -1,5 +1,5 @@
-.wish-list {
-  margin: 20px
+.wishList {
+  margin: 20px;
 }
 
 ul {
@@ -17,7 +17,7 @@ ul li {
   padding: 0;
 }
 
-.wish-list ul li .remove {
+.wishList ul li .remove {
   font-size: 10px;
   position: relative;
   top: -10px;
