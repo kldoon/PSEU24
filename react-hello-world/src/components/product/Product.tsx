@@ -1,4 +1,5 @@
-import './product.css';
+import classNames from 'classnames';
+import classes from './product.module.css';
 
 interface IProps {
   data: Store.IProduct;
@@ -12,7 +13,7 @@ const Product = (props: IProps) => {
 
   return (
     <div
-      className="product"
+      className={classes.product}
       // Conditional styling (full object with multi attributes)
       style={props.isWishList ? { boxShadow: '0 4px 8px rgba(255, 0, 0, 0.2)', borderRadius: '20px' } : {}}
     // Conditional styling (each attribute independently)
@@ -24,13 +25,14 @@ const Product = (props: IProps) => {
     // }}
     >
       <img src={data.imageURL} alt={data.name} width={100} height={100} />
-      <h2 className="name">{data.name}</h2>
-      <h3 className="price">{data.price}</h3>
-      <p className="desc">{data.desc}</p>
-      <div className="actions">
+      <h2 className={classes.name}>{data.name}</h2>
+      <h3 className={classes.price}>{data.price}</h3>
+      <p className={classes.desc}>{data.desc}</p>
+      <div className={classes.actions}>
         <button
-        // Conditional classname, if the isWishList = true then add a class name called wishList to the button
-          className={`wish-button ${props.isWishList ? "wishList" : ""}`}
+          // Conditional classname, if the isWishList = true then add a class name called wishList to the button
+          // className={`${classes['wish-button']} ${props.isWishList ? classes.wishList : ""}`}
+          className={classNames(classes['wish-button'], props.isWishList && classes.wishList)}
           onClick={() => { props.onWish(data.id) }}
           disabled={props.isWishList}
         >❤️ {data.wishListCounter}

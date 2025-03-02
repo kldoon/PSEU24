@@ -4,6 +4,7 @@ import Categories from './components/categories/Categories';
 import ProductsList from './components/products-list/ProductsList';
 import { useState } from 'react';
 import WishList from './components/wish-list/WishList';
+import AddProduct from './components/add-product/AddProduct';
 
 const PRODUCTS_LIST: Store.IProduct[] = [
   {
@@ -127,6 +128,7 @@ function App() {
         productList={pList}
         onRemove={handleRemoveFromWishList}
       />
+      <AddProduct />
       <ProductsList
         data={pList}
         wishList={wishList}

@@ -17,13 +17,12 @@ const WishList = (props: IProps) => {
           ? <ul>
             {
               wishListItems.map(item => (
-                <li>
+                <li key={item.id}>
                   {item.name}
                   <span className={classes.remove} onClick={() => props.onRemove(item.id)}>❌</span>
                 </li>
               ))
             }
-
           </ul>
           : ' No items added to your wish list!'
       }
