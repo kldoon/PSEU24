@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import classes from './add-product.module.css';
+import classNames from 'classnames';
 
 interface IProps {
   onAdd: (product: Store.IProduct) => void;
@@ -41,35 +43,64 @@ const AddProduct = (props: IProps) => {
   return (
     <div>
       <button onClick={() => setVisible(!visible)}>Add Product</button>
-      {
-        visible && (
-          <div>
-            <h2>Add New Product</h2>
-            <p>Please fill all the required product details</p><br />
-            <div>
-              <label htmlFor="pName">Product Name: </label>
-              <input id="pName" name="name" value={form.name} onChange={handleFormChange} />
-            </div>
-            <div>
-              <label htmlFor="pPrice">Product Price: </label>
-              <input id="pPrice" name="price" type="number" value={form.price} onChange={handleFormChange} />
-              <span><b>with discount:</b>{(form.price ?? 0) * 0.8}</span>
-            </div>
-            <div>
-              <label htmlFor="pImage">Product Image URL: </label>
-              <input id="pImage" name="imageURL" value={form.imageURL} onChange={handleFormChange} />
-            </div>
-            <div>
-              <label htmlFor="pDesc">Product Description: </label>
-              <textarea id="pDesc" name="desc" value={form.desc} onChange={handleFormChange} />
-            </div>
-            <div>
-              <button onClick={handleSubmit}>Submit</button>
-              <button onClick={handleReset}>Reset</button>
-            </div>
-          </div>
-        )
-      }
+
+      <div className={classNames(classes.container, visible && classes.visible)}>
+        <h2 className={classes.title}>Add New Product</h2>
+        <p className={classes.subtitle}>Please fill all the required product details</p>
+
+        <div className={classes.formGroup}>
+          <label className={classes.label} htmlFor="pName">Product Name:</label>
+          <input
+            className={classes.input}
+            id="pName"
+            name="name"
+            value={form.name}
+            onChange={handleFormChange}
+          />
+        </div>
+
+        <div className={classes.formGroup}>
+          <label className={classes.label} htmlFor="pPrice">Product Price:</label>
+          <input
+            className={classes.input}
+            id="pPrice"
+            name="price"
+            type="number"
+            value={form.price}
+            onChange={handleFormChange}
+          />
+          <span className={classes.priceDetails}>
+            <b>with discount:</b> {(form.price ?? 0) * 0.8}
+          </span>
+        </div>
+
+        <div className={classes.formGroup}>
+          <label className={classes.label} htmlFor="pImage">Product Image URL:</label>
+          <input
+            className={classes.input}
+            id="pImage"
+            name="imageURL"
+            value={form.imageURL}
+            onChange={handleFormChange}
+          />
+        </div>
+
+        <div className={classes.formGroup}>
+          <label className={classes.label} htmlFor="pDesc">Product Description:</label>
+          <textarea
+            className={classes.textarea}
+            id="pDesc"
+            name="desc"
+            value={form.desc}
+            onChange={handleFormChange}
+          />
+        </div>
+
+        <div className={classes.buttonGroup}>
+          <button className={classes.button} onClick={handleSubmit}>Submit</button>
+          <button className={classes.button} onClick={handleReset}>Reset</button>
+        </div>
+      </div>
       <hr />
     </div>
   )
