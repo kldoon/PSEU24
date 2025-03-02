@@ -118,6 +118,10 @@ function App() {
     setPList(pList.filter((_, i) => i !== index));
   }
 
+  const handleAddProduct = (product: Store.IProduct) => {
+    setPList([product, ...pList]);
+  }
+
   return (
     <div>
       <Header productsCount={pList.length} />
@@ -128,7 +132,7 @@ function App() {
         productList={pList}
         onRemove={handleRemoveFromWishList}
       />
-      <AddProduct />
+      <AddProduct onAdd={handleAddProduct} />
       <ProductsList
         data={pList}
         wishList={wishList}

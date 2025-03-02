@@ -1,46 +1,41 @@
 import React, { useState } from 'react';
 
-const AddProduct = () => {
-  const [visible, setVisible] = useState(true);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [imageURL, setImageURL] = useState("");
+interface IProps {
+  onAdd: (product: Store.IProduct) => void;
+}
 
-  /*
-   {
-    id: number,
+const AddProduct = (props: IProps) => {
+  const [visible, setVisible] = useState(true);
+  interface IForm {
     name: string,
     price: number,
     imageURL: string,
-    wishListCounter: number,
     desc: string,
     inStock: boolean
-  }
-  */
+  };
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setName(e.target.value.replaceAll(' ', '-'));
-    setName(e.target.value);
-  }
+  const INITIAL_FORM: IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setName(e.target.value.replaceAll(' ', '-'));
-    setPrice(Number(e.target.value));
-  }
+  const [form, setForm] = useState<IForm>(INITIAL_FORM);
 
-  const handleImageURLChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageURL(e.target.value)
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    let value: any = e.target.value;
+
+    if (e.target.name === 'price') {
+      value = Number(value);
+    }
+    setForm({ ...form, [e.target.name]: value });
   }
 
   const handleSubmit = () => {
-    const newProduct = { name, price, imageURL };
+    const newProduct: Store.IProduct = { id: Date.now(), wishListCounter: 0, ...form };
     console.log(newProduct);
+    props.onAdd(newProduct);
+    handleReset();
   }
 
   const handleReset = () => {
-    setName('');
-    setPrice(0);
-    setImageURL('');
+    setForm(INITIAL_FORM);
   }
 
   return (
@@ -53,15 +48,20 @@ const AddProduct = () => {
             <p>Please fill all the required product details</p><br />
             <div>
               <label htmlFor="pName">Product Name: </label>
-              <input id="pName" value={name} onChange={handleNameChange} />
+              <input id="pName" name="name" value={form.name} onChange={handleFormChange} />
             </div>
             <div>
               <label htmlFor="pPrice">Product Price: </label>
-              <input id="pPrice" type="number" value={price} onChange={handlePriceChange} />
+              <input id="pPrice" name="price" type="number" value={form.price} onChange={handleFormChange} />
+              <span><b>with discount:</b>{(form.price ?? 0) * 0.8}</span>
             </div>
             <div>
               <label htmlFor="pImage">Product Image URL: </label>
-              <input id="pImage" value={imageURL} onChange={handleImageURLChange} />
+              <input id="pImage" name="imageURL" value={form.imageURL} onChange={handleFormChange} />
+            </div>
+            <div>
+              <label htmlFor="pDesc">Product Description: </label>
+              <textarea id="pDesc" name="desc" value={form.desc} onChange={handleFormChange} />
             </div>
             <div>
               <button onClick={handleSubmit}>Submit</button>
