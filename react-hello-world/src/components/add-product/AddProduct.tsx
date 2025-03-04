@@ -19,49 +19,53 @@ const AddProduct = (props: IProps) => {
 
   const INITIAL_FORM: IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
 
-  const [form, setForm] = useState<IForm>(INITIAL_FORM);
+  // const [form, setForm] = useState<IForm>(INITIAL_FORM);
   const [errorsList, setErrorsList] = useState<{ [key: string]: string }>({});
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let value: any = e.target.value;
-    let key = e.target.name;
-
+  const validate = (key: string, value: string) => {
     const errors: { [key: string]: string } = {};
     if (key === 'name' && value.length <= 3) {
       errors[key] = "The product must more than 3 characters"
     }
 
-    if (key === 'imageURL' && !validator.isURL(form.imageURL)) {
+    if (key === 'imageURL' && !validator.isURL(value)) {
       errors[key] = "Invalid image URL";
     }
 
     if (key === 'price') {
-      value = Number(value);
-      if (form.price <= 0) {
+      const numValue = Number(value);
+      if (numValue <= 0) {
         errors[key] = "The price is required (NO FREE PRODUCTS!!!)";
       }
     }
 
     setErrorsList(errors);
-
-    setForm({ ...form, [key]: value });
   }
 
-  const handleSubmit = () => {
-    const newProduct: Store.IProduct = { id: Date.now(), wishListCounter: 0, ...form };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // const name = e.target["name"].value
+    const newProduct: Store.IProduct = {
+      id: Date.now(),
+      wishListCounter: 0,
+      inStock: true,
+      name: (e.target as any)["name"].value,
+      price: (e.target as any)["price"].value,
+      desc: (e.target as any)["desc"].value,
+      imageURL: (e.target as any)["imageURL"].value
+    };
+
     props.onAdd(newProduct);
-    handleReset();
-  }
-
-  const handleReset = () => {
-    setForm(INITIAL_FORM);
   }
 
   return (
     <div>
       <button onClick={() => setVisible(!visible)}>Add Product</button>
-
-      <div className={classNames(classes.container, visible && classes.visible)}>
+      <form
+        className={classNames(classes.container, visible && classes.visible)}
+        onSubmit={handleSubmit}
+      >
         <h2 className={classes.title}>Add New Product</h2>
         <p className={classes.subtitle}>Please fill all the required product details</p>
 
@@ -71,8 +75,7 @@ const AddProduct = (props: IProps) => {
             className={classes.input}
             id="pName"
             name="name"
-            value={form.name}
-            onChange={handleFormChange}
+            defaultValue={INITIAL_FORM.name}
           />
           <span className={classes.error}>{errorsList['name']}</span>
         </div>
@@ -84,12 +87,8 @@ const AddProduct = (props: IProps) => {
             id="pPrice"
             name="price"
             type="number"
-            value={form.price}
-            onChange={handleFormChange}
+            defaultValue={INITIAL_FORM.price}
           />
-          <span className={classes.priceDetails}>
-            <b>with discount:</b> {(form.price ?? 0) * 0.8}
-          </span>
           <span className={classes.error}>{errorsList['price']}</span>
         </div>
 
@@ -99,8 +98,7 @@ const AddProduct = (props: IProps) => {
             className={classes.input}
             id="pImage"
             name="imageURL"
-            value={form.imageURL}
-            onChange={handleFormChange}
+            defaultValue={INITIAL_FORM.imageURL}
           />
           <span className={classes.error}>{errorsList['imageURL']}</span>
         </div>
@@ -111,16 +109,15 @@ const AddProduct = (props: IProps) => {
             className={classes.textarea}
             id="pDesc"
             name="desc"
-            value={form.desc}
-            onChange={handleFormChange}
+            defaultValue={INITIAL_FORM.desc}
           />
         </div>
 
         <div className={classes.buttonGroup}>
-          <button className={classes.button} onClick={handleSubmit}>Submit</button>
-          <button className={classes.button} onClick={handleReset}>Reset</button>
+          <button type="submit" className={classes.button}>Submit</button>
+          <button type="reset" className={classes.button}>Reset</button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
