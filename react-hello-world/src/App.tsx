@@ -132,7 +132,9 @@ function App() {
         productList={pList}
         onRemove={handleRemoveFromWishList}
       />
+      <hr />
       <AddProduct onAdd={handleAddProduct} />
+      <hr />
       <ProductsList
         data={pList}
         wishList={wishList}

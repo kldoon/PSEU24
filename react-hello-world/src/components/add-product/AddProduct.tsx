@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './add-product.module.css';
 import classNames from 'classnames';
+import validator from 'validator';
 
 interface IProps {
   onAdd: (product: Store.IProduct) => void;
@@ -19,19 +20,35 @@ const AddProduct = (props: IProps) => {
   const INITIAL_FORM: IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
 
   const [form, setForm] = useState<IForm>(INITIAL_FORM);
+  const [errorsList, setErrorsList] = useState<{ [key: string]: string }>({});
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let value: any = e.target.value;
+    let key = e.target.name;
 
-    if (e.target.name === 'price') {
-      value = Number(value);
+    const errors: { [key: string]: string } = {};
+    if (key === 'name' && value.length <= 3) {
+      errors[key] = "The product must more than 3 characters"
     }
-    setForm({ ...form, [e.target.name]: value });
+
+    if (key === 'imageURL' && !validator.isURL(form.imageURL)) {
+      errors[key] = "Invalid image URL";
+    }
+
+    if (key === 'price') {
+      value = Number(value);
+      if (form.price <= 0) {
+        errors[key] = "The price is required (NO FREE PRODUCTS!!!)";
+      }
+    }
+
+    setErrorsList(errors);
+
+    setForm({ ...form, [key]: value });
   }
 
   const handleSubmit = () => {
     const newProduct: Store.IProduct = { id: Date.now(), wishListCounter: 0, ...form };
-    console.log(newProduct);
     props.onAdd(newProduct);
     handleReset();
   }
@@ -57,6 +74,7 @@ const AddProduct = (props: IProps) => {
             value={form.name}
             onChange={handleFormChange}
           />
+          <span className={classes.error}>{errorsList['name']}</span>
         </div>
 
         <div className={classes.formGroup}>
@@ -72,6 +90,7 @@ const AddProduct = (props: IProps) => {
           <span className={classes.priceDetails}>
             <b>with discount:</b> {(form.price ?? 0) * 0.8}
           </span>
+          <span className={classes.error}>{errorsList['price']}</span>
         </div>
 
         <div className={classes.formGroup}>
@@ -83,6 +102,7 @@ const AddProduct = (props: IProps) => {
             value={form.imageURL}
             onChange={handleFormChange}
           />
+          <span className={classes.error}>{errorsList['imageURL']}</span>
         </div>
 
         <div className={classes.formGroup}>
@@ -101,7 +121,6 @@ const AddProduct = (props: IProps) => {
           <button className={classes.button} onClick={handleReset}>Reset</button>
         </div>
       </div>
-      <hr />
     </div>
   )
 }

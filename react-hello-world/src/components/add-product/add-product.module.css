@@ -82,3 +82,8 @@
 .button:hover {
   background-color: #5750d4;
 }
+
+.error {
+  font-size: 10px;
+  color: firebrick;
+}
