@@ -18,12 +18,11 @@ const AddProduct = (props: IProps) => {
   };
 
   const INITIAL_FORM: IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
+  const errors: { [key: string]: string } = {};
 
-  // const [form, setForm] = useState<IForm>(INITIAL_FORM);
   const [errorsList, setErrorsList] = useState<{ [key: string]: string }>({});
 
   const validate = (key: string, value: string) => {
-    const errors: { [key: string]: string } = {};
     if (key === 'name' && value.length <= 3) {
       errors[key] = "The product must more than 3 characters"
     }
@@ -39,21 +38,31 @@ const AddProduct = (props: IProps) => {
       }
     }
 
-    setErrorsList(errors);
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const keys = ['name', 'price', 'desc', 'imageURL'];
+
+    const formData: IForm = { ...INITIAL_FORM };
+
+    keys.forEach(key => {
+      const value = (e.target as any)[key].value;
+      validate(key, value);
+      // @ts-ignore
+      formData[key] = value;
+    });
+
+    if (Object.keys(errors).length) {
+      setErrorsList(errors);
+      return;
+    }
 
     // const name = e.target["name"].value
     const newProduct: Store.IProduct = {
       id: Date.now(),
       wishListCounter: 0,
-      inStock: true,
-      name: (e.target as any)["name"].value,
-      price: (e.target as any)["price"].value,
-      desc: (e.target as any)["desc"].value,
-      imageURL: (e.target as any)["imageURL"].value
+      ...formData
     };
 
     props.onAdd(newProduct);
