@@ -2,22 +2,16 @@ import React, { useState } from 'react';
 import classes from './add-product.module.css';
 import classNames from 'classnames';
 import validator from 'validator';
+import ProductForm from './ProductForm';
 
 interface IProps {
   onAdd: (product: Store.IProduct) => void;
 }
 
 const AddProduct = (props: IProps) => {
-  const [visible, setVisible] = useState(true);
-  interface IForm {
-    name: string,
-    price: number,
-    imageURL: string,
-    desc: string,
-    inStock: boolean
-  };
+  const [visible, setVisible] = useState(false);
 
-  const INITIAL_FORM: IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
+  const INITIAL_FORM: Store.IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
   const errors: { [key: string]: string } = {};
 
   const [errorsList, setErrorsList] = useState<{ [key: string]: string }>({});
@@ -44,7 +38,7 @@ const AddProduct = (props: IProps) => {
     e.preventDefault();
     const keys = ['name', 'price', 'desc', 'imageURL'];
 
-    const formData: IForm = { ...INITIAL_FORM };
+    const formData: Store.IForm = { ...INITIAL_FORM };
 
     keys.forEach(key => {
       const value = (e.target as any)[key].value;
@@ -71,62 +65,16 @@ const AddProduct = (props: IProps) => {
   return (
     <div>
       <button onClick={() => setVisible(!visible)}>Add Product</button>
-      <form
-        className={classNames(classes.container, visible && classes.visible)}
-        onSubmit={handleSubmit}
-      >
-        <h2 className={classes.title}>Add New Product</h2>
-        <p className={classes.subtitle}>Please fill all the required product details</p>
-
-        <div className={classes.formGroup}>
-          <label className={classes.label} htmlFor="pName">Product Name:</label>
-          <input
-            className={classes.input}
-            id="pName"
-            name="name"
-            defaultValue={INITIAL_FORM.name}
+      {
+        visible ?
+          <ProductForm
+            INITIAL_FORM={INITIAL_FORM}
+            errorsList={errorsList}
+            handleSubmit={handleSubmit}
+            visible={visible}
           />
-          <span className={classes.error}>{errorsList['name']}</span>
-        </div>
-
-        <div className={classes.formGroup}>
-          <label className={classes.label} htmlFor="pPrice">Product Price:</label>
-          <input
-            className={classes.input}
-            id="pPrice"
-            name="price"
-            type="number"
-            defaultValue={INITIAL_FORM.price}
-          />
-          <span className={classes.error}>{errorsList['price']}</span>
-        </div>
-
-        <div className={classes.formGroup}>
-          <label className={classes.label} htmlFor="pImage">Product Image URL:</label>
-          <input
-            className={classes.input}
-            id="pImage"
-            name="imageURL"
-            defaultValue={INITIAL_FORM.imageURL}
-          />
-          <span className={classes.error}>{errorsList['imageURL']}</span>
-        </div>
-
-        <div className={classes.formGroup}>
-          <label className={classes.label} htmlFor="pDesc">Product Description:</label>
-          <textarea
-            className={classes.textarea}
-            id="pDesc"
-            name="desc"
-            defaultValue={INITIAL_FORM.desc}
-          />
-        </div>
-
-        <div className={classes.buttonGroup}>
-          <button type="submit" className={classes.button}>Submit</button>
-          <button type="reset" className={classes.button}>Reset</button>
-        </div>
-      </form>
+          : null
+      }
     </div>
   )
 }

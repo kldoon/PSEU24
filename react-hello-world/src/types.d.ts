@@ -15,4 +15,12 @@ declare namespace Store {
     desc: string,
     inStock: boolean
   }
+
+  interface IForm {
+    name: string,
+    price: number,
+    imageURL: string,
+    desc: string,
+    inStock: boolean
+  };
 }

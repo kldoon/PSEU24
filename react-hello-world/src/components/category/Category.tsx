@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './category.css';
+import { getCatKey } from '../../utils/common';
 
 interface IProps {
   title: string;
@@ -11,6 +12,26 @@ const DEFAULT_IMAGE = 'https://ae-pic-a1.aliexpress-media.com/kf/S87ca085f4d5e49
 
 const Category = (props: IProps) => {
   const [counter, setCounter] = useState<number>(0);
+
+  // This is a code that will run only one time when the component is mounted
+  useEffect(() => {
+    console.log(`Category mounted: ${props.title}`);
+    const storedCounter = localStorage.getItem(getCatKey(props.title)) || '0';
+    setCounter(Number(storedCounter));
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      // The code here will be run only once when the component is unmounted!
+    }
+  }, []);
+
+  const handleCounter = () => {
+    const newCounter = counter + 1;
+    setCounter(newCounter);
+    localStorage.setItem(getCatKey(props.title), newCounter.toString());
+    props.onVisit(props.title);
+  }
 
   return (
     <div className="category">
@@ -24,13 +45,7 @@ const Category = (props: IProps) => {
       }
       <div className="actions">
         <button
-          onClick={() => {
-            console.log(counter);
-            setCounter(counter + 1);
-            setCounter(old => old + 1);
-            console.log(counter);
-            props.onVisit(props.title);
-          }}
+          onClick={handleCounter}
         >
           Visit
         </button>
