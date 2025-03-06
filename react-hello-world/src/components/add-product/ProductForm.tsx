@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './add-product.module.css';
 import classNames from 'classnames';
 
@@ -11,6 +11,7 @@ interface IProps {
 
 const ProductForm = (props: IProps) => {
   const { visible, handleSubmit, INITIAL_FORM, errorsList } = props;
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     // On mounting this will run
@@ -22,13 +23,34 @@ const ProductForm = (props: IProps) => {
     }
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+      // console.log(newDate);
+    }, 1000);
+
+    return () => {
+      //This will help in removing the interval thread when the 
+      // add product form component is unmounted, (better performance)
+      clearInterval(interval);
+    }
+  }, []);
+
+  useEffect(() => {
+    const s = time.getSeconds()
+    if (s == 0) {
+      console.log("Heyyyy one minute passed");
+    }
+  }, [time]);
+
   return (
     <form
       className={classNames(classes.container, visible && classes.visible)}
       onSubmit={handleSubmit}
     >
-      <h2 className={classes.title}>Add New Product</h2>
+      <h2 className={classes.title}>Add New Product span</h2>
       <p className={classes.subtitle}>Please fill all the required product details</p>
+      <p className={classes.subtitle}>{time.toLocaleTimeString()}</p>
 
       <div className={classes.formGroup}>
         <label className={classes.label} htmlFor="pName">Product Name:</label>

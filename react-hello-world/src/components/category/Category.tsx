@@ -26,12 +26,12 @@ const Category = (props: IProps) => {
     }
   }, []);
 
-  const handleCounter = () => {
-    const newCounter = counter + 1;
-    setCounter(newCounter);
-    localStorage.setItem(getCatKey(props.title), newCounter.toString());
+  useEffect(() => {
+    // This will run when counter value is changed
+    localStorage.setItem(getCatKey(props.title), counter.toString());
     props.onVisit(props.title);
-  }
+    console.log("Counter has changed!");
+  }, [counter]);
 
   return (
     <div className="category">
@@ -45,7 +45,7 @@ const Category = (props: IProps) => {
       }
       <div className="actions">
         <button
-          onClick={handleCounter}
+          onClick={() => setCounter(counter + 1)}
         >
           Visit
         </button>
