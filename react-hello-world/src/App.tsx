@@ -102,6 +102,7 @@ const PRODUCTS_LIST: Store.IProduct[] = [
 function App() {
   const [pList, setPList] = useState(PRODUCTS_LIST);
   const [wishList, setWishList] = useState<Array<number>>([]);
+  const [currentPage, setCurrentPage] = useState<string>('categories');
 
   const handleAddToWishList = (id: number) => {
     const newPList = pList.map(prod => prod.id !== id ? prod : { ...prod, wishListCounter: prod.wishListCounter + 1 });
@@ -124,23 +125,28 @@ function App() {
 
   return (
     <div>
-      <Header productsCount={pList.length} />
-      <Categories />
-      <hr />
-      <WishList
-        wishList={wishList}
-        productList={pList}
-        onRemove={handleRemoveFromWishList}
+      <Header
+        productsCount={pList.length}
+        onNavigate={(page: string) => setCurrentPage(page)}
+        currentPage={currentPage}
       />
-      <hr />
-      <AddProduct onAdd={handleAddProduct} />
-      <hr />
-      <ProductsList
-        data={pList}
-        wishList={wishList}
-        onWish={handleAddToWishList}
-        onDelete={handleDelete}
-      />
+      {currentPage === 'categories' && <Categories />}
+      {currentPage === 'wish' && (
+        <WishList
+          wishList={wishList}
+          productList={pList}
+          onRemove={handleRemoveFromWishList}
+        />
+      )}
+      {currentPage === 'add' && <AddProduct onAdd={handleAddProduct} />}
+      {currentPage === 'list' && (
+        <ProductsList
+          data={pList}
+          wishList={wishList}
+          onWish={handleAddToWishList}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   )
 }

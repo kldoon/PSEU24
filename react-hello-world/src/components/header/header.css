@@ -10,3 +10,29 @@
   font-size: 15px;
   margin: 0;
 }
+
+ul.main-nav {
+  display: flex;
+  column-gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+ul.main-nav li {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+ul.main-nav li:hover {
+  text-decoration: underline;
+}
+
+ul.main-nav li.active {
+  border-bottom: 3px solid #b0a9e9;
+}
+
+ul.main-nav li.active:hover {
+  text-decoration: none;
+}

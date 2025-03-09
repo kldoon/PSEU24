@@ -9,8 +9,6 @@ interface IProps {
 }
 
 const AddProduct = (props: IProps) => {
-  const [visible, setVisible] = useState(false);
-
   const INITIAL_FORM: Store.IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
   const errors: { [key: string]: string } = {};
 
@@ -63,19 +61,12 @@ const AddProduct = (props: IProps) => {
   }
 
   return (
-    <div>
-      <button onClick={() => setVisible(!visible)}>Add Product</button>
-      {
-        visible ?
-          <ProductForm
-            INITIAL_FORM={INITIAL_FORM}
-            errorsList={errorsList}
-            handleSubmit={handleSubmit}
-            visible={visible}
-          />
-          : null
-      }
-    </div>
+    <ProductForm
+      INITIAL_FORM={INITIAL_FORM}
+      errorsList={errorsList}
+      handleSubmit={handleSubmit}
+      visible={true}
+    />
   )
 }
 
