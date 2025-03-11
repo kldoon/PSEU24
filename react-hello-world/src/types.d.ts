@@ -22,5 +22,5 @@ declare namespace Store {
     imageURL: string,
     desc: string,
     inStock: boolean
-  };
+  }
 }

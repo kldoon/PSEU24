@@ -16,13 +16,6 @@ const Product = (props: IProps) => {
       className={classes.product}
       // Conditional styling (full object with multi attributes)
       style={props.isWishList ? { boxShadow: '0 4px 8px rgba(255, 0, 0, 0.2)', borderRadius: '20px' } : {}}
-    // Conditional styling (each attribute independently)
-    // style={{
-    //   boxShadow: props.isWishList
-    //     ? '0 4px 8px rgba(255, 0, 0, 0.2)'
-    //     : '0 4px 8px rgba(0, 0, 0, 0.1)',
-    //   borderRadius: props.isWishList ? '20px' : '8px'
-    // }}
     >
       <img src={data.imageURL} alt={data.name} width={100} height={100} />
       <h2 className={classes.name}>{data.name}</h2>
@@ -30,11 +23,9 @@ const Product = (props: IProps) => {
       <p className={classes.desc}>{data.desc}</p>
       <div className={classes.actions}>
         <button
-          // Conditional classname, if the isWishList = true then add a class name called wishList to the button
-          // className={`${classes['wish-button']} ${props.isWishList ? classes.wishList : ""}`}
+          // Conditional classname, if the isWishList = true then add a class name called wishList to the button          
           className={classNames(classes['wish-button'], props.isWishList && classes.wishList)}
-          onClick={() => { props.onWish(data.id) }}
-          disabled={props.isWishList}
+          onClick={() => props.onWish(data.id)}          
         >❤️ {data.wishListCounter}
         </button>
         <button onClick={props.onDelete}>🗑️</button>

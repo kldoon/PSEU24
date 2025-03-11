@@ -86,7 +86,6 @@ p {
 }
 
 button.wish-button.wishList {
-  filter: none;
-  pointer-events: none;
+  filter: none;  
   user-select: none;
 }
