@@ -5,7 +5,7 @@ interface IProps {
   data: Store.IProduct[];
   wishList: number[];
   onWish: (id: number) => void;
-  onDelete: (index: number) => void;
+  onDelete: (id: number) => void;
 }
 
 const ProductsList = (props: IProps) => {
@@ -13,13 +13,13 @@ const ProductsList = (props: IProps) => {
     <div className="products-list">
       {
         Boolean(props.data.length)
-          ? props.data.map((product, index) => (
+          ? props.data.map(product => (
             <Product
               key={product.id}
               data={product}
               onWish={props.onWish}
               isWishList={props.wishList.includes(product.id)}
-              onDelete={() => props.onDelete(index)}
+              onDelete={() => props.onDelete(product.id)}
             />
           ))
           : <h3>Can't Find Any Products</h3>

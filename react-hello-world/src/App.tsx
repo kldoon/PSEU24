@@ -2,86 +2,57 @@ import './App.css';
 import Header from './components/header/Header';
 import Categories from './components/categories/Categories';
 import ProductsList from './components/products-list/ProductsList';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import WishList from './components/wish-list/WishList';
 import AddProduct from './components/add-product/AddProduct';
 import { EPages } from './enums';
+import { storeReducer } from './reducers/store-reducer';
+import { StoreReducer } from './reducers/store-reducer.types';
+import { storeData } from './utils/storage';
 
 function App() {
-  const [pList, setPList] = useState<Store.IProduct[]>([]);
-  const [wishList, setWishList] = useState<Array<number>>([]);
+  const [state, dispatch] = useReducer(storeReducer, { initialized: false, productList: [], wishList: [] });
   const [currentPage, setCurrentPage] = useState<EPages>(EPages.CATEGORIES);
 
   useEffect(() => {
-    setPList(readData('products-list') || []);
-    setWishList(readData('wish-list') || []);
+    dispatch({ type: StoreReducer.EActionTypes.INIT });
   }, []);
 
   useEffect(() => {
-    storeData(pList, 'products-list');
-  }, [pList]);
+    storeData(state.productList, 'products-list');
+  }, [state.productList]);
 
   useEffect(() => {
-    storeData(wishList, 'wish-list');
-  }, [wishList]);
-
-  const storeData = (data: any, key: string) => {
-    localStorage.setItem(key, JSON.stringify(data));
-  };
-
-  const readData = (key: string): any => {
-    return JSON.parse(localStorage.getItem(key) || '');
-  };
-
-  const handleToggleWishList = (id: number) => {
-    let delta = 0;
-    if (wishList.includes(id)) {
-      delta = -1;
-      setWishList(wishList.filter(itemId => itemId !== id));
-    } else {
-      delta = +1;
-      setWishList(Array.from(new Set([...wishList, id])));
-    }
-
-    const newPList = pList.map(prod => prod.id !== id ? prod : { ...prod, wishListCounter: prod.wishListCounter + delta });
-    setPList(newPList);
-  }
-
-  const handleRemoveFromWishList = (id: number) => {
-    setWishList(old => old.filter(item => item !== id));
-  }
-
-  const handleDelete = (index: number) => {
-    setPList(pList.filter((_, i) => i !== index));
-  }
+    storeData(state.wishList, 'wish-list');
+  }, [state.wishList]);
 
   const handleAddProduct = (product: Store.IProduct) => {
-    setPList([product, ...pList]);
+    dispatch({ type: StoreReducer.EActionTypes.ADD_PRODUCT, payload: { product } })
     setCurrentPage(EPages.LIST);
   }
 
   return (
     <div>
       <Header
-        productsCount={pList.length}
+        productsCount={state.productList.length}
         onNavigate={(page: EPages) => setCurrentPage(page)}
         currentPage={currentPage}
       />
       {currentPage === EPages.CATEGORIES && <Categories />}
       {currentPage === EPages.WISH && (
         <WishList
-          wishList={wishList}
-          productList={pList}
-          onRemove={handleRemoveFromWishList}
+          wishList={state.wishList}
+          productList={state.productList}
+          onRemove={(id) => dispatch({ type: StoreReducer.EActionTypes.TOGGLE_WISHLIST, payload: { id } })}
         />
       )}
       {currentPage === EPages.ADD && <AddProduct onAdd={handleAddProduct} />}
       {currentPage === EPages.LIST && (
         <ProductsList
-          data={pList}
-          wishList={wishList}
-          onWish={handleToggleWishList}
-          onDelete={handleDelete}
+          data={state.productList}
+          wishList={state.wishList}
+          onWish={(id) => dispatch({ type: StoreReducer.EActionTypes.TOGGLE_WISHLIST, payload: { id } })}
+          onDelete={(id) => dispatch({ type: StoreReducer.EActionTypes.DELETE_PRODUCT, payload: { id } })}
         />
       )}
     </div>
