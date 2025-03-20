@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import classes from './product.module.css';
 import { useContext } from 'react';
-import { CartContext } from '../../App';
+import { CartContext } from '../../providers/cart-provider';
 
 interface IProps {
   data: Store.IProduct;
@@ -12,31 +12,7 @@ interface IProps {
 
 const Product = (props: IProps) => {
   const { data } = props;
-  const { setCart } = useContext(CartContext);
-
-  const handleAddToCart = () => {
-    let found = false;
-    setCart(cart => cart.map(item => {
-      if (item.id === data.id) {
-        found = true;
-        return { ...item, count: item.count + 1 }
-      } else return item;
-    }));
-
-    if (!found) {
-      setCart(old => ([...old, { id: data.id, count: 1 }]));
-    }
-
-    // const itemIdx = cart.findIndex(item => item.id === data.id);
-
-    // if (itemIdx === -1) {
-    //   setCart(old => ([...old, { id: data.id, count: 1 }]));
-    // } else {
-    //   setCart(cart => cart.map((item, index) =>
-    //     index === itemIdx ? { ...item, count: item.count + 1 } : item
-    //   ));
-    // }
-  }
+  const { addToCart } = useContext(CartContext);
 
   return (
     <div
@@ -49,7 +25,7 @@ const Product = (props: IProps) => {
       <h3 className={classes.price}>{data.price}</h3>
       <p className={classes.desc}>{data.desc}</p>
       <div className={classes.actions}>
-        <button onClick={handleAddToCart} title='Add to Cart'>➕</button>
+        <button onClick={() => addToCart(data.id)} title='Add to Cart'>➕</button>
         <button
           // Conditional classname, if the isWishList = true then add a class name called wishList to the button          
           className={classNames(classes['wish-button'], props.isWishList && classes.wishList)}

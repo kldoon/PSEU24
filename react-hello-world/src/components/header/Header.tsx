@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { EPages } from '../../enums';
 import './header.css';
-import { CartContext } from '../../App';
+import { CartContext } from '../../providers/cart-provider';
 
 interface IProps {
   productsCount: number;

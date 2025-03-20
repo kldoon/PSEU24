@@ -2,25 +2,19 @@ import './App.css';
 import Header from './components/header/Header';
 import Categories from './components/categories/Categories';
 import ProductsList from './components/products-list/ProductsList';
-import { createContext, useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import WishList from './components/wish-list/WishList';
 import AddProduct from './components/add-product/AddProduct';
 import { EPages } from './enums';
 import { storeReducer } from './reducers/store-reducer';
 import { StoreReducer } from './reducers/store-reducer.types';
 import { storeData } from './utils/storage';
+import CartProvider from './providers/cart-provider';
 
-interface ICartContext {
-  cart: Store.ICart;
-  setCart: React.Dispatch<React.SetStateAction<Store.ICart>>;
-}
-
-export const CartContext = createContext<ICartContext>({ cart: [], setCart: () => { } });
 
 function App() {
   const [state, dispatch] = useReducer(storeReducer, { isInitialized: false, productList: [], wishList: [] });
   const [currentPage, setCurrentPage] = useState<EPages>(EPages.CATEGORIES);
-  const [cart, setCart] = useState<Store.ICart>([]);
 
   useEffect(() => {
     if (!state.isInitialized) {
@@ -47,7 +41,7 @@ function App() {
 
   return (
     <div>
-      <CartContext.Provider value={{ cart, setCart }}>
+      <CartProvider>
         <Header
           productsCount={state.productList.length}
           onNavigate={(page: EPages) => setCurrentPage(page)}
@@ -70,7 +64,7 @@ function App() {
             onDelete={(id) => dispatch({ type: StoreReducer.EActionTypes.DELETE_PRODUCT, payload: { id } })}
           />
         )}
-      </CartContext.Provider>
+      </CartProvider>
     </div>
   )
 }
