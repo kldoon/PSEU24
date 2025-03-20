@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import { EPages } from '../../enums';
 import './header.css';
+import { CartContext } from '../../App';
 
 interface IProps {
   productsCount: number;
   onNavigate: (page: EPages) => void;
   currentPage: string;
 }
-const Header = ({ productsCount, onNavigate, currentPage }: IProps) => {
+const Header = ({ onNavigate, currentPage }: IProps) => {
+  const { cart } = useContext(CartContext);
+
   return (
     <header className='header'>
       <h1>This is header</h1>
@@ -18,7 +22,7 @@ const Header = ({ productsCount, onNavigate, currentPage }: IProps) => {
           <li className={currentPage === EPages.ADD ? 'active' : ''} onClick={() => onNavigate(EPages.ADD)}>Add Product</li>
         </ul>
       </nav>
-      <span>We have <b>{productsCount}</b> Products available</span>
+      <span className='cart'>🛒<sup>{cart.length}</sup></span>
     </header>
   )
 };

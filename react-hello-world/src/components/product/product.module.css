@@ -68,15 +68,22 @@ p {
   cursor: pointer;
   font-size: 1rem;
   padding: 8px;
+}
+
+.product .actions button.wish-button {
   transition: background-color 0.3s ease, transform 0.3s ease;
   filter: grayscale(1);
 }
 
-.product .actions button:first-of-type {
+.product .actions button.wish-button span {
+  font-size: 10px;
+}
+
+.product .actions button.wish-button {
   color: #e74c3c;
 }
 
-.product .actions button:last-of-type {
+.product .actions button.wish-button {
   color: #555;
 }
 
@@ -85,7 +92,7 @@ p {
   transform: scale(1.05);
 }
 
-button.wish-button.wishList {
-  filter: none;  
+.product .actions button.wish-button.wishList {
+  filter: none;
   user-select: none;
 }

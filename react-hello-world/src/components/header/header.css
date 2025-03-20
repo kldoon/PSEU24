@@ -36,3 +36,19 @@ ul.main-nav li.active {
 ul.main-nav li.active:hover {
   text-decoration: none;
 }
+
+.header .cart sup {
+  position: relative;
+  font-size: 10px;
+  font-weight: bold;
+  width: 10px;
+  height: 10px;
+  left: -5px;
+  padding: 5px;
+  background-color: rgb(139 141 200);
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  line-height: 11px;
+  color: #fff;
+}

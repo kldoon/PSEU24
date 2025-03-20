@@ -23,4 +23,9 @@ declare namespace Store {
     desc: string,
     inStock: boolean
   }
+
+  type ICart = Array<{
+    id: number;
+    count: number;
+  }>;
 }
