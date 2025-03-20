@@ -3,7 +3,8 @@ const storeData = (data: any, key: string) => {
 };
 
 const readData = (key: string): any => {
-  return JSON.parse(localStorage.getItem(key) || '');
+  const strData = localStorage.getItem(key);
+  return strData ? JSON.parse(strData) : null;
 };
 
 export {
