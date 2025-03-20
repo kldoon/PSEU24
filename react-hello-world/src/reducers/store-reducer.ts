@@ -6,7 +6,7 @@ const storeReducer = (state: StoreReducer.IState, action: StoreReducer.IAction):
     case StoreReducer.EActionTypes.INIT: {
       const productList = readData('products-list') || [];
       const wishList = readData('wish-list') || [];
-      return { ...state, productList, wishList };
+      return { ...state, productList, wishList, isInitialized: true };
     }
     case StoreReducer.EActionTypes.ADD_PRODUCT: {
       return { ...state, productList: [action.payload.product, ...state.productList] };

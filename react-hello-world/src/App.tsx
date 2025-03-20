@@ -11,20 +11,26 @@ import { StoreReducer } from './reducers/store-reducer.types';
 import { storeData } from './utils/storage';
 
 function App() {
-  const [state, dispatch] = useReducer(storeReducer, { initialized: false, productList: [], wishList: [] });
+  const [state, dispatch] = useReducer(storeReducer, { isInitialized: false, productList: [], wishList: [] });
   const [currentPage, setCurrentPage] = useState<EPages>(EPages.CATEGORIES);
 
   useEffect(() => {
-    dispatch({ type: StoreReducer.EActionTypes.INIT });
+    if (!state.isInitialized) {
+      dispatch({ type: StoreReducer.EActionTypes.INIT });
+    }
   }, []);
 
   useEffect(() => {
-    storeData(state.productList, 'products-list');
-  }, [state.productList]);
+    if (state.isInitialized) {
+      storeData(state.productList, 'products-list');
+    }
+  }, [state.productList, state.isInitialized]);
 
   useEffect(() => {
-    storeData(state.wishList, 'wish-list');
-  }, [state.wishList]);
+    if (state.isInitialized) {
+      storeData(state.wishList, 'wish-list');
+    }
+  }, [state.wishList, state.isInitialized]);
 
   const handleAddProduct = (product: Store.IProduct) => {
     dispatch({ type: StoreReducer.EActionTypes.ADD_PRODUCT, payload: { product } })

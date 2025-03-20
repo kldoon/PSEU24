@@ -1,6 +1,6 @@
 export namespace StoreReducer {
   export interface IState {
-    initialized: boolean;
+    isInitialized: boolean;
     productList: Store.IProduct[];
     wishList: number[];
   }
