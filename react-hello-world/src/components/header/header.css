@@ -25,17 +25,18 @@ ul.main-nav li {
   cursor: pointer;
 }
 
-ul.main-nav li:hover {
+ul.main-nav li a {
+  text-decoration: none;
+}
+
+ul.main-nav li a:hover {
   text-decoration: underline;
 }
 
-ul.main-nav li.active {
+ul.main-nav li a.active {
   border-bottom: 3px solid #b0a9e9;
 }
 
-ul.main-nav li.active:hover {
-  text-decoration: none;
-}
 
 .header .cart sup {
   position: relative;

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import classes from './product.module.css';
 import { useContext } from 'react';
 import { CartContext } from '../../providers/cart-provider';
+import { Link } from 'react-router';
 
 interface IProps {
   data: Store.IProduct;
@@ -21,7 +22,7 @@ const Product = (props: IProps) => {
       style={props.isWishList ? { boxShadow: '0 4px 8px rgba(255, 0, 0, 0.2)', borderRadius: '20px' } : {}}
     >
       <img src={data.imageURL} alt={data.name} width={100} height={100} />
-      <h2 className={classes.name}>{data.name}</h2>
+      <Link to={`/product/${data.id}`}><h2 className={classes.name}>{data.name}</h2></Link>
       <h3 className={classes.price}>{data.price}</h3>
       <p className={classes.desc}>{data.desc}</p>
       <div className={classes.actions}>

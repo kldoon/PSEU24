@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './category.css';
 import { getCatKey } from '../../utils/common';
+import { useNavigate } from 'react-router';
 
 interface IProps {
   title: string;
@@ -11,6 +12,7 @@ interface IProps {
 const DEFAULT_IMAGE = 'https://ae-pic-a1.aliexpress-media.com/kf/S87ca085f4d5e49c88b71acecf9c2911ce.png_.webp';
 
 const Category = (props: IProps) => {
+  const navigate = useNavigate()
   const [counter, setCounter] = useState<number>(0);
 
   // This is a code that will run only one time when the component is mounted
@@ -45,7 +47,10 @@ const Category = (props: IProps) => {
       }
       <div className="actions">
         <button
-          onClick={() => setCounter(counter + 1)}
+          // navigate to product page
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
         >
           Visit
         </button>
