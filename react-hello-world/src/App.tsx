@@ -12,6 +12,7 @@ import { storeData } from './utils/storage';
 import CartProvider from './providers/cart-provider';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import ProductDetails from './components/product-details/product-details';
+import NotFound from './components/not-found/NotFound';
 
 
 function App() {
@@ -73,11 +74,11 @@ function App() {
                 />
               } />
             <Route
-              path="/product/:id"
+              path="/product/:category/:id"
               element={<ProductDetails products={state.productList} />}
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
-
         </BrowserRouter>
       </CartProvider>
     </div>
