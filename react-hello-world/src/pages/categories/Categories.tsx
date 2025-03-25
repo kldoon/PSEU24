@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './categories.css';
-import Category from "../category/Category";
+import Category from "../../components/category/Category";
 
 const data: Store.ICategory[] = [
   {
@@ -34,7 +34,7 @@ const data: Store.ICategory[] = [
   }
 ];
 
-const Categories = () => {
+const CategoriesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleVisit = (title: string) => {
@@ -62,4 +62,4 @@ const Categories = () => {
   );
 }
 
-export default Categories;
+export default CategoriesPage;

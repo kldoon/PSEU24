@@ -1,4 +1,4 @@
-import Product from '../product/Product';
+import Product from '../../components/product/Product';
 import './products-list.css';
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
   onDelete: (id: number) => void;
 }
 
-const ProductsList = (props: IProps) => {
+const ProductsListPage = (props: IProps) => {
   return (
     <div className="products-list">
       {
@@ -28,4 +28,4 @@ const ProductsList = (props: IProps) => {
   )
 }
 
-export default ProductsList
+export default ProductsListPage

@@ -1,18 +1,18 @@
 import './App.css';
 import Header from './components/header/Header';
-import Categories from './components/categories/Categories';
-import ProductsList from './components/products-list/ProductsList';
+import CategoriesPage from './pages/categories/Categories';
+import ProductsListPage from './pages/products-list/ProductsList';
 import { useEffect, useReducer, useState } from 'react';
-import WishList from './components/wish-list/WishList';
-import AddProduct from './components/add-product/AddProduct';
+import WishListPage from './pages/wish-list/WishList';
+import AddProductPage from './pages/add-product/AddProduct';
 import { EPages } from './enums';
 import { storeReducer } from './reducers/store-reducer';
 import { StoreReducer } from './reducers/store-reducer.types';
 import { storeData } from './utils/storage';
 import CartProvider from './providers/cart-provider';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import ProductDetails from './components/product-details/product-details';
-import NotFound from './components/not-found/NotFound';
+import ProductDetailsPage from './pages/product-details/product-details';
+import NotFound from './pages/not-found/NotFound';
 
 
 function App() {
@@ -44,29 +44,29 @@ function App() {
 
   return (
     <div>
-      <CartProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <CartProvider>
           <Header />
           <Routes>
             <Route
               path={`/${EPages.CATEGORIES}`}
-              element={<Categories />}
+              element={<CategoriesPage />}
             />
             <Route
               path={`/${EPages.WISH}`}
-              element={<WishList
+              element={<WishListPage
                 wishList={state.wishList}
                 productList={state.productList}
                 onRemove={(id) => dispatch({ type: StoreReducer.EActionTypes.TOGGLE_WISHLIST, payload: { id } })}
               />} />
             <Route
               path={`/${EPages.ADD}`}
-              element={<AddProduct onAdd={handleAddProduct} />}
+              element={<AddProductPage onAdd={handleAddProduct} />}
             />
             <Route
               path={`/${EPages.LIST}`}
               element={
-                <ProductsList
+                <ProductsListPage
                   data={state.productList}
                   wishList={state.wishList}
                   onWish={(id) => dispatch({ type: StoreReducer.EActionTypes.TOGGLE_WISHLIST, payload: { id } })}
@@ -75,13 +75,13 @@ function App() {
               } />
             <Route
               path="/product/:category/:id"
-              element={<ProductDetails products={state.productList} />}
+              element={<ProductDetailsPage products={state.productList} />}
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </CartProvider>
-    </div>
+        </CartProvider>
+      </BrowserRouter>
+    </div >
   )
 }
 

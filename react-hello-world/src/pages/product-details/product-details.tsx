@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 type IParams = { id: string, name: string };
 interface IProps { products: Store.IProduct[] };
 
-const ProductDetails = ({ products }: IProps) => {
+const ProductDetailsPage = ({ products }: IProps) => {
   const params = useParams<IParams>();
   const [product, setProduct] = useState<Store.IProduct | undefined>();
 
@@ -19,4 +19,4 @@ const ProductDetails = ({ products }: IProps) => {
   </div>
 }
 
-export default ProductDetails;
+export default ProductDetailsPage;

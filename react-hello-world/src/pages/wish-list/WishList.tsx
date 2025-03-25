@@ -6,7 +6,7 @@ interface IProps {
   onRemove: (id: number) => void;
 }
 
-const WishList = (props: IProps) => {
+const WishListPage = (props: IProps) => {
   const wishListItems = props.productList.filter(p => props.wishList.includes(p.id));
 
   return (
@@ -30,4 +30,4 @@ const WishList = (props: IProps) => {
   )
 }
 
-export default WishList;
+export default WishListPage;

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import classes from './add-product.module.css';
-import classNames from 'classnames';
 import validator from 'validator';
-import ProductForm from './ProductForm';
+import ProductForm from '../../components/product-form/ProductForm';
 
 interface IProps {
   onAdd: (product: Store.IProduct) => void;
 }
 
-const AddProduct = (props: IProps) => {
+const AddProductPage = (props: IProps) => {
   const INITIAL_FORM: Store.IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
   const errors: { [key: string]: string } = {};
 
@@ -70,4 +68,4 @@ const AddProduct = (props: IProps) => {
   )
 }
 
-export default AddProduct;
+export default AddProductPage;
