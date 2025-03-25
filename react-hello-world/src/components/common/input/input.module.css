@@ -1,0 +1,26 @@
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
