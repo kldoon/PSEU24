@@ -24,6 +24,7 @@ const Product = (props: IProps) => {
       <img src={data.imageURL} alt={data.name} width={100} height={100} />
       <Link to={`/product/${data.name}/${data.id}`}><h2 className={classes.name}>{data.name}</h2></Link>
       <h3 className={classes.price}>{data.price}</h3>
+      <b className={classes.desc}><small>{data.category}</small></b>
       <p className={classes.desc}>{data.desc}</p>
       <div className={classes.actions}>
         <button onClick={() => addToCart(data.id)} title='Add to Cart'>➕</button>

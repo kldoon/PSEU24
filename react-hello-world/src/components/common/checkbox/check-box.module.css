@@ -1,0 +1,13 @@
+.checkbox-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkbox-group>label {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.checkbox-group>input {
+  cursor: pointer;
+}

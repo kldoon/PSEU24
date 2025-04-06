@@ -48,10 +48,10 @@ const AddProductPage = (props: IProps) => {
       return;
     }
 
-    // const name = e.target["name"].value
     const newProduct: Store.IProduct = {
       id: Date.now(),
       wishListCounter: 0,
+      category: 'Smart Home',
       ...formData
     };
 

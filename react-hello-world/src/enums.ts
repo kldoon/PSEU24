@@ -5,6 +5,15 @@ const enum EPages {
   ADD = 'add'
 }
 
+const enum ECategory {
+  AUTOMATION_KITS = "Automation Kits",
+  CAMERA_DRONES = "Camera Drones",
+  DIGITAL_CAMERAS = "Digital Cameras",
+  SMART_HOME = "Smart Home",
+  LENSES_ACCESSORIES = "Lenses & Accessories"
+}
+
 export {
-  EPages
+  EPages,
+  ECategory
 }

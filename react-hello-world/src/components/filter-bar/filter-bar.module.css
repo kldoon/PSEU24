@@ -1,3 +1,9 @@
 .wrapper {
   width: 100%;
 }
+
+.categories {
+  display: flex;
+  column-gap: 10px;
+  flex-wrap: wrap;
+}

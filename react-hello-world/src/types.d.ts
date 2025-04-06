@@ -13,7 +13,8 @@ declare namespace Store {
     imageURL: string,
     wishListCounter: number,
     desc: string,
-    inStock: boolean
+    inStock: boolean;
+    category: string;
   }
 
   interface IForm {

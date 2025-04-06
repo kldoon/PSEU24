@@ -17,7 +17,14 @@ const ProductsListPage = (props: IProps) => {
 
   useEffect(() => {
     const q = params.get("searchTerm") || '';
-    const filtered = props.data.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+    let filtered = props.data.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+
+    const categories = params.getAll("categories");
+
+    if (categories.length) {
+      filtered = filtered.filter(p => categories.includes(p.category))
+    }
+
     setFilteredProducts(filtered);
   }, [params, props.data]);
 
