@@ -2,7 +2,8 @@ const enum EPages {
   CATEGORIES = 'categories',
   LIST = 'list',
   WISH = 'wish',
-  ADD = 'add'
+  ADD = 'add',
+  CART = 'cart'
 }
 
 const enum ECategory {

@@ -48,7 +48,7 @@ const ProductForm = (props: IProps) => {
       className={classNames(classes.container, visible && classes.visible)}
       onSubmit={handleSubmit}
     >
-      <h2 className={classes.title}>Add New Product span</h2>
+      <h2 className={classes.title}>Add New Product</h2>
       <p className={classes.subtitle}>Please fill all the required product details</p>
       <p className={classes.subtitle}>{time.toLocaleTimeString()}</p>
 

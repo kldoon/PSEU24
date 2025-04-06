@@ -39,6 +39,9 @@ ul.main-nav li a.active {
   border-bottom: 3px solid #b0a9e9;
 }
 
+.header .cart {
+  text-decoration: none;
+}
 
 .header .cart sup {
   position: relative;

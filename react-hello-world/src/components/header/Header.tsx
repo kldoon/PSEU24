@@ -13,13 +13,13 @@ const Header = () => {
       <h1>Sarah Express</h1>
       <nav>
         <ul className="main-nav">
-          <li><NavLink className={({isActive}) => isActive ? 'active' : ''} to={`/${EPages.CATEGORIES}`}>Categories</NavLink></li>
-          <li><NavLink className={({isActive}) => isActive ? 'active' : ''} to={`/${EPages.LIST}`}>Products List</NavLink></li>
-          <li><NavLink className={({isActive}) => isActive ? 'active' : ''} to={`/${EPages.WISH}`}>Wish List</NavLink></li>
-          <li><NavLink className={({isActive}) => isActive ? 'active' : ''} to={`/${EPages.ADD}`}>Add Product</NavLink></li>
+          <li><NavLink className={({ isActive }) => isActive ? 'active' : ''} to={`/${EPages.CATEGORIES}`}>Categories</NavLink></li>
+          <li><NavLink className={({ isActive }) => isActive ? 'active' : ''} to={`/${EPages.LIST}`}>Products List</NavLink></li>
+          <li><NavLink className={({ isActive }) => isActive ? 'active' : ''} to={`/${EPages.WISH}`}>Wish List</NavLink></li>
+          <li><NavLink className={({ isActive }) => isActive ? 'active' : ''} to={`/${EPages.ADD}`}>Add Product</NavLink></li>
         </ul>
       </nav>
-      <span className='cart'>🛒<sup>{cart.length}</sup></span>
+      <NavLink className='cart' to={`/${EPages.CART}`}>🛒<sup>{cart.length}</sup></NavLink>
     </header>
   )
 };

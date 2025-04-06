@@ -11,9 +11,10 @@ import { StoreReducer } from './reducers/store-reducer.types';
 import { storeData } from './utils/storage';
 import CartProvider from './providers/cart-provider';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import ProductDetailsPage from './pages/product-details/product-details';
 import NotFound from './pages/not-found/NotFound';
 import LoginPage from './pages/login/Login';
+import ProductDetailsPage from './pages/product-details/Product-Details';
+import CartPage from './pages/cart/Cart';
 
 
 function App() {
@@ -52,6 +53,10 @@ function App() {
             <Route
               path={`/${EPages.CATEGORIES}`}
               element={<CategoriesPage />}
+            />
+            <Route
+              path={`/${EPages.CART}`}
+              element={<CartPage products={state.productList} />}
             />
             <Route
               path={`/${EPages.WISH}`}
