@@ -13,6 +13,7 @@ import CartProvider from './providers/cart-provider';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import ProductDetailsPage from './pages/product-details/product-details';
 import NotFound from './pages/not-found/NotFound';
+import LoginPage from './pages/login/Login';
 
 
 function App() {
@@ -76,6 +77,10 @@ function App() {
             <Route
               path="/product/:category/:id"
               element={<ProductDetailsPage products={state.productList} />}
+            />
+            <Route
+              path="/user/login"
+              element={<LoginPage />}
             />
             <Route path="*" element={<NotFound />} />
           </Routes>

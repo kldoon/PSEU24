@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header className='header'>
-      <h1>This is header</h1>
+      <h1>Sarah Express</h1>
       <nav>
         <ul className="main-nav">
           <li><NavLink className={({isActive}) => isActive ? 'active' : ''} to={`/${EPages.CATEGORIES}`}>Categories</NavLink></li>
