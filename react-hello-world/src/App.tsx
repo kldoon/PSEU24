@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/header/Header';
 import CategoriesPage from './pages/categories/Categories';
 import ProductsListPage from './pages/products-list/ProductsList';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import WishListPage from './pages/wish-list/WishList';
 import AddProductPage from './pages/add-product/AddProduct';
 import { EPages } from './enums';
@@ -16,6 +16,7 @@ import LoginPage from './pages/login/Login';
 import ProductDetailsPage from './pages/product-details/Product-Details';
 import CartPage from './pages/cart/Cart';
 import HomePage from './pages/home/home';
+import Guard from './components/guard/Guard';
 
 
 function App() {
@@ -63,14 +64,22 @@ function App() {
             />
             <Route
               path={`/${EPages.WISH}`}
-              element={<WishListPage
-                wishList={state.wishList}
-                productList={state.productList}
-                onRemove={(id) => dispatch({ type: StoreReducer.EActionTypes.TOGGLE_WISHLIST, payload: { id } })}
-              />} />
+              element={
+                <Guard allowedRoles={['user', 'admin']}>
+                  <WishListPage
+                    wishList={state.wishList}
+                    productList={state.productList}
+                    onRemove={(id) => dispatch({ type: StoreReducer.EActionTypes.TOGGLE_WISHLIST, payload: { id } })}
+                  />
+                </Guard>
+              } />
             <Route
               path={`/${EPages.ADD}`}
-              element={<AddProductPage onAdd={handleAddProduct} />}
+              element={
+                <Guard allowedRoles={['admin']}>
+                  <AddProductPage onAdd={handleAddProduct} />
+                </Guard>
+              }
             />
             <Route
               path={`/${EPages.LIST}`}
@@ -84,7 +93,11 @@ function App() {
               } />
             <Route
               path="/product/:category/:id"
-              element={<ProductDetailsPage products={state.productList} />}
+              element={
+                <Guard allowedRoles={['*']}>
+                  <ProductDetailsPage products={state.productList} />
+                </Guard>
+              }
             />
             <Route
               path="/user/login"

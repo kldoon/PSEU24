@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import validator from 'validator';
 import ProductForm from '../../components/product-form/ProductForm';
-import { readData } from '../../utils/storage';
-import { useNavigate } from 'react-router';
 
 interface IProps {
   onAdd: (product: Store.IProduct) => void;
 }
 
 const AddProductPage = (props: IProps) => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const user: Store.IUser = readData('sarah-express-user');
-    if (user) {
-      if (user.role !== 'admin') {
-        navigate('/');
-      }
-    } else {
-      navigate('/user/login');
-    }
-  }, []);
-
   const INITIAL_FORM: Store.IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
   const errors: { [key: string]: string } = {};
 

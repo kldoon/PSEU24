@@ -7,7 +7,11 @@ const readData = (key: string): any => {
   return strData ? JSON.parse(strData) : null;
 };
 
+const removeData = (key: string) => {
+  localStorage.removeItem(key);
+}
 export {
   readData,
-  storeData
+  storeData,
+  removeData
 }
