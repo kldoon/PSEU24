@@ -3,6 +3,7 @@ import FilterBar from '../../components/filter-bar/FilterBar';
 import Product from '../../components/product/Product';
 import './products-list.css';
 import { useSearchParams } from 'react-router';
+import useParams from '../../hooks/params.hook';
 
 interface IProps {
   data: Store.IProduct[];
@@ -12,14 +13,12 @@ interface IProps {
 }
 
 const ProductsListPage = (props: IProps) => {
-  const [params] = useSearchParams();
+  const { params } = useParams();
   const [filteredProducts, setFilteredProducts] = useState<Store.IProduct[]>([]);
 
   useEffect(() => {
-    const q = params.get("searchTerm") || '';
-    let filtered = props.data.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
-
-    const categories = params.getAll("categories");
+    let filtered = props.data.filter(p => p.name.toLowerCase().includes(params.searchTerm.toLowerCase()));
+    const categories = params.categories;
 
     if (categories.length) {
       filtered = filtered.filter(p => categories.includes(p.category))

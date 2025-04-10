@@ -1,37 +1,31 @@
-import { useSearchParams } from 'react-router';
 import Input from '../common/input/Input';
 import classes from './filter-bar.module.css';
 import { ECategory } from '../../enums';
 import CheckBox from '../common/checkbox/CheckBox';
+import useParams from '../../hooks/params.hook';
 
 const FilterBar = () => {
-  const [params, setParams] = useSearchParams();
+  const { params, setParam } = useParams();
+
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
-    const newParams = new URLSearchParams(params);
     const searchTerm = e.currentTarget.value;
-
-    if (searchTerm.length) {
-      newParams.set('searchTerm', searchTerm.trim());
-    } else {
-      newParams.delete('searchTerm');
-    }
-    setParams(newParams);
+    setParam('searchTerm', searchTerm);
   }
 
   const handleCategory = (e: React.FormEvent<HTMLInputElement>) => {
-    const newParams = new URLSearchParams(params);
+    let selectCats = params.categories;
     const checked = e.currentTarget.checked;
     const cat = e.currentTarget.name;
-    if (checked) {      
-      newParams.append('categories', cat);
-    } else {
-      newParams.delete('categories', cat);
-    }
-    setParams(newParams);
-  }
 
-  const selectedCats = params.getAll('categories');
+    if (checked) {
+      selectCats.push(cat);
+    } else {
+      selectCats = selectCats.filter(c => c !== cat);
+    }
+
+    setParam('categories', selectCats);
+  }
 
   return (
     <div className={classes.wrapper}>
@@ -39,7 +33,7 @@ const FilterBar = () => {
         placeholder="Search for product"
         style={{ width: '250px' }}
         onChange={handleSearch}
-        value={params.get('searchTerm') || ''}
+        value={params.searchTerm}
         type="search"
       />
       <div className={classes.categories}>
@@ -50,7 +44,7 @@ const FilterBar = () => {
               key={entry}
               name={entry}
               label={entry}
-              checked={selectedCats.includes(entry)}
+              checked={params.categories.includes(entry)}
               onChange={handleCategory}
             />
           ))
