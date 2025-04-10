@@ -1,8 +1,8 @@
 import React from 'react';
-import { readData } from '../../utils/storage';
 import { Navigate } from 'react-router';
 import lock from '../../assets/lock.svg';
 import classes from './guard.module.css';
+import useAuth from '../../hooks/auth.hook';
 
 interface IProps {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const Guard = (props: IProps) => {
-  const user: Store.IUser = readData('sarah-express-user');
+  const { user } = useAuth();
 
   if (!user) {
     return <Navigate to="/user/login" />;

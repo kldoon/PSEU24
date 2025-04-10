@@ -15,7 +15,6 @@ const Category = (props: IProps) => {
 
   // This is a code that will run only one time when the component is mounted
   useEffect(() => {
-    console.log(`Category mounted: ${props.title}`);
     const storedCounter = localStorage.getItem(getCatKey(props.title)) || '0';
     setCounter(Number(storedCounter));
   }, []);
@@ -30,7 +29,6 @@ const Category = (props: IProps) => {
     // This will run when counter value is changed
     localStorage.setItem(getCatKey(props.title), counter.toString());
     props.onVisit(props.title);
-    console.log("Counter has changed!");
   }, [counter]);
 
   return (

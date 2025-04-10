@@ -1,3 +1,4 @@
+import useAuth from '../../hooks/auth.hook';
 import classes from './wish-list.module.css';
 
 interface IProps {
@@ -7,6 +8,8 @@ interface IProps {
 }
 
 const WishListPage = (props: IProps) => {
+  const { logout } = useAuth();
+
   const wishListItems = props.productList.filter(p => props.wishList.includes(p.id));
 
   return (
@@ -26,6 +29,8 @@ const WishListPage = (props: IProps) => {
           </ul>
           : ' No items added to your wish list!'
       }
+
+      <button onClick={logout}>Logout</button>
     </div>
   )
 }

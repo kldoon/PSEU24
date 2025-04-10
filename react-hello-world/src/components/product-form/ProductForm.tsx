@@ -14,19 +14,8 @@ const ProductForm = (props: IProps) => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    // On mounting this will run
-    console.log("Product form mounted");
-
-    return () => {
-      // On un-mounting this will run
-      console.log("Product form Unmounted!");
-    }
-  }, []);
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
-      // console.log(newDate);
     }, 1000);
 
     return () => {
@@ -35,13 +24,6 @@ const ProductForm = (props: IProps) => {
       clearInterval(interval);
     }
   }, []);
-
-  useEffect(() => {
-    const s = time.getSeconds()
-    if (s == 0) {
-      console.log("Heyyyy one minute passed");
-    }
-  }, [time]);
 
   return (
     <form

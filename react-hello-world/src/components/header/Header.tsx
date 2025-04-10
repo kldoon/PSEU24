@@ -1,13 +1,13 @@
-import { useContext } from 'react';
 import { EPages } from '../../enums';
 import './header.css';
-import { CartContext } from '../../providers/cart-provider';
 import { NavLink } from 'react-router';
-import { readData, removeData } from '../../utils/storage';
+import useHeader from '../../hooks/header.hook';
+import useAuth from '../../hooks/auth.hook';
+
 
 const Header = () => {
-  const { cart } = useContext(CartContext);
-  const user: Store.IUser = readData('sarah-express-user');
+  const { showAdd, showLogout, cart } = useHeader();
+  const { logout } = useAuth();
 
   return (
     <header className='header'>
@@ -19,7 +19,7 @@ const Header = () => {
           <li><NavLink className={({ isActive }) => isActive ? 'active' : ''} to={`/${EPages.LIST}`}>Products List</NavLink></li>
           <li><NavLink className={({ isActive }) => isActive ? 'active' : ''} to={`/${EPages.WISH}`}>Wish List</NavLink></li>
           {
-            user?.role === 'admin' && <li>
+            showAdd && <li>
               <NavLink
                 className={({ isActive }) => isActive ? 'active' : ''}
                 to={`/${EPages.ADD}`}
@@ -32,9 +32,7 @@ const Header = () => {
       </nav>
       <div>
         <NavLink className='cart' to={`/${EPages.CART}`}>🛒<sup>{cart.length}</sup></NavLink>
-        {
-          user && <NavLink className="logout" onClick={() => removeData('sarah-express-user')} to={`/${EPages.HOME}`} >🏃‍♀️‍➡️<sup>Logout</sup></NavLink>
-        }
+        {showLogout && <NavLink className="logout" onClick={logout} to={`/${EPages.HOME}`} >🏃‍♀️‍➡️<b>Logout</b></NavLink>}
       </div>
     </header >
   )
