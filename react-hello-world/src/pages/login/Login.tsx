@@ -11,10 +11,23 @@ const LoginPage = () => {
     e.preventDefault();
     const username = e.currentTarget['username'].value;
     const password = e.currentTarget['password'].value;
-    if (username === 'Sarah' && password === '1234') {
-      storeData('username', username);
+    if (username.toLowerCase() === 'sarah' && password === '1234') {
+      const user = {
+        username,
+        role: 'admin'
+      };
+      storeData(user, 'sarah-express-user');
       navigate(`/${EPages.CATEGORIES}`);
-    } else {
+    } else if (username.toLowerCase() === 'eid' && password === '1234') {
+      const user = {
+        username,
+        role: 'user'
+      };
+
+      storeData(user, 'sarah-express-user');
+      navigate(`/${EPages.CATEGORIES}`);
+    }
+    else {
       alert('Wrong username or password!');
       localStorage.removeItem('username');
     }

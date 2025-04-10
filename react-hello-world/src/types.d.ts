@@ -29,4 +29,9 @@ declare namespace Store {
     id: number;
     count: number;
   }>;
+
+  interface IUser {
+    username: string;
+    role: 'admin' | 'user';
+  }
 }

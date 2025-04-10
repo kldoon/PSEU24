@@ -1,4 +1,5 @@
 const enum EPages {
+  HOME = '',
   CATEGORIES = 'categories',
   LIST = 'list',
   WISH = 'wish',

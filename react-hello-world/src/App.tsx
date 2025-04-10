@@ -15,11 +15,11 @@ import NotFound from './pages/not-found/NotFound';
 import LoginPage from './pages/login/Login';
 import ProductDetailsPage from './pages/product-details/Product-Details';
 import CartPage from './pages/cart/Cart';
+import HomePage from './pages/home/home';
 
 
 function App() {
   const [state, dispatch] = useReducer(storeReducer, { isInitialized: false, productList: [], wishList: [] });
-  const [currentPage, setCurrentPage] = useState<EPages>(EPages.CATEGORIES);
 
   useEffect(() => {
     if (!state.isInitialized) {
@@ -41,7 +41,6 @@ function App() {
 
   const handleAddProduct = (product: Store.IProduct) => {
     dispatch({ type: StoreReducer.EActionTypes.ADD_PRODUCT, payload: { product } })
-    setCurrentPage(EPages.LIST);
   }
 
   return (
@@ -50,6 +49,10 @@ function App() {
         <CartProvider>
           <Header />
           <Routes>
+            <Route
+              path={`/${EPages.HOME}`}
+              element={<HomePage />}
+            />
             <Route
               path={`/${EPages.CATEGORIES}`}
               element={<CategoriesPage />}

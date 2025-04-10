@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router';
 import classes from './wish-list.module.css';
+import { useEffect } from 'react';
+import { readData } from '../../utils/storage';
 
 interface IProps {
   wishList: Array<number>;
@@ -7,6 +10,14 @@ interface IProps {
 }
 
 const WishListPage = (props: IProps) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user: Store.IUser = readData('sarah-express-user');
+    if (!user) {
+      navigate('/user/login');
+    }
+  }, []);
+
   const wishListItems = props.productList.filter(p => props.wishList.includes(p.id));
 
   return (
