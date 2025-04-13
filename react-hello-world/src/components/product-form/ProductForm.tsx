@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classes from './add-product.module.css';
+import { ECategory } from '../../enums';
 
 interface IProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -74,6 +75,20 @@ const ProductForm = (props: IProps) => {
           name="desc"
           defaultValue={INITIAL_FORM.desc}
         />
+      </div>
+
+      <div className={classes.formGroup}>
+        <label className={classes.label} htmlFor="category">Category:</label>
+        <select name="category" defaultValue="">
+          <option value="" disabled>-- Select a Category</option>
+          {
+            // @ts-ignore
+            Object.values(ECategory).map(entry => (
+              <option key={entry} value={entry}>{entry}</option>
+            ))
+          }
+        </select><br />
+        <span className={classes.error}>{errorsList['category']}</span>
       </div>
 
       <div className={classes.buttonGroup}>

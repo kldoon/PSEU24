@@ -24,12 +24,14 @@ const useAddProduct = (INITIAL_FORM: Store.IForm, onAdd: (product: Store.IProduc
         errors[key] = "The price is required (NO FREE PRODUCTS!!!)";
       }
     }
+    if(key === 'category' && value === "") {
+      errors[key] = "Please choose a category :)"
+    }
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const keys = ['name', 'price', 'desc', 'imageURL'];
-
+    const keys = ['name', 'price', 'desc', 'imageURL', 'category'];
     const formData: Store.IForm = { ...INITIAL_FORM };
 
     keys.forEach(key => {
@@ -47,7 +49,6 @@ const useAddProduct = (INITIAL_FORM: Store.IForm, onAdd: (product: Store.IProduc
     const newProduct: Store.IProduct = {
       id: Date.now(),
       wishListCounter: 0,
-      category: 'Smart Home',
       ...formData
     };
 

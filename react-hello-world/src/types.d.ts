@@ -7,22 +7,23 @@ declare namespace Store {
   }
 
   interface IProduct {
-    id: number,
-    name: string,
-    price: number,
-    imageURL: string,
-    wishListCounter: number,
-    desc: string,
+    id: number;
+    name: string;
+    price: number;
+    imageURL: string;
+    wishListCounter: number;
+    desc: string;
     inStock: boolean;
     category: string;
   }
 
   interface IForm {
-    name: string,
-    price: number,
-    imageURL: string,
-    desc: string,
-    inStock: boolean
+    name: string;
+    price: number;
+    imageURL: string;
+    desc: string;
+    inStock: boolean;
+    category: string;
   }
 
   type ICart = Array<{

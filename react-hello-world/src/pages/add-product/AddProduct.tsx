@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const AddProductPage = (props: IProps) => {
-  const INITIAL_FORM: Store.IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true };
+  const INITIAL_FORM: Store.IForm = { name: '', price: 0, imageURL: '', desc: '', inStock: true, category: '' };
   const { handleSubmit, errorsList } = useAddProduct(INITIAL_FORM, props.onAdd);
 
   return (
