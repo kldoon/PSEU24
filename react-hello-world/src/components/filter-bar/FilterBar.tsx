@@ -7,7 +7,6 @@ import useParams from '../../hooks/params.hook';
 const FilterBar = () => {
   const { params, setParam } = useParams();
 
-
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
     const searchTerm = e.currentTarget.value;
     setParam('searchTerm', searchTerm);

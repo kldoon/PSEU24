@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import FilterBar from '../../components/filter-bar/FilterBar';
 import Product from '../../components/product/Product';
 import './products-list.css';
-import { useSearchParams } from 'react-router';
 import useParams from '../../hooks/params.hook';
 
 interface IProps {

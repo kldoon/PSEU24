@@ -32,7 +32,11 @@ const Header = () => {
       </nav>
       <div>
         <NavLink className='cart' to={`/${EPages.CART}`}>🛒<sup>{cart.length}</sup></NavLink>
-        {showLogout && <NavLink className="logout" onClick={logout} to={`/${EPages.HOME}`} >🏃‍♀️‍➡️<b>Logout</b></NavLink>}
+        {
+          showLogout
+            ? <NavLink className="logout" onClick={logout} to={`/${EPages.HOME}`} >🏃‍♀️‍➡️<b>Logout</b></NavLink>
+            : <NavLink className="logout" onClick={logout} to={`/users/${EPages.LOGIN}`} >👤<b>Login</b></NavLink>
+        }
       </div>
     </header >
   )

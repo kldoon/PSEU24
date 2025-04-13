@@ -4,7 +4,8 @@ const enum EPages {
   LIST = 'list',
   WISH = 'wish',
   ADD = 'add',
-  CART = 'cart'
+  CART = 'cart',
+  LOGIN = 'login'
 }
 
 const enum ECategory {

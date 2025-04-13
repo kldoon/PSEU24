@@ -29,7 +29,7 @@ const WishListPage = (props: IProps) => {
           </ul>
           : ' No items added to your wish list!'
       }
-
+      <br /><br />
       <button onClick={logout}>Logout</button>
     </div>
   )
