@@ -17,6 +17,7 @@ import ProductDetailsPage from './pages/product-details/Product-Details';
 import CartPage from './pages/cart/Cart';
 import HomePage from './pages/home/home';
 import Guard from './components/guard/Guard';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
     <div>
       <BrowserRouter>
         <CartProvider>
+          <ToastContainer />
           <Header />
           <Routes>
             <Route
