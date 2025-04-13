@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import classes from './add-product.module.css';
-import classNames from 'classnames';
 
 interface IProps {
-  visible: boolean;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   INITIAL_FORM: Store.IForm;
   errorsList: { [key: string]: string };
 }
 
 const ProductForm = (props: IProps) => {
-  const { visible, handleSubmit, INITIAL_FORM, errorsList } = props;
+  const { handleSubmit, INITIAL_FORM, errorsList } = props;
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const ProductForm = (props: IProps) => {
 
   return (
     <form
-      className={classNames(classes.container, visible && classes.visible)}
+      className={classes.container}
       onSubmit={handleSubmit}
     >
       <h2 className={classes.title}>Add New Product</h2>
@@ -79,8 +77,8 @@ const ProductForm = (props: IProps) => {
       </div>
 
       <div className={classes.buttonGroup}>
+        <button type="reset" className={`${classes.button} ${classes.secondaryButton}`}>Reset</button>
         <button type="submit" className={classes.button}>Submit</button>
-        <button type="reset" className={classes.button}>Reset</button>
       </div>
     </form>
   )

@@ -14,7 +14,6 @@ const AddProductPage = (props: IProps) => {
       INITIAL_FORM={INITIAL_FORM}
       errorsList={errorsList}
       handleSubmit={handleSubmit}
-      visible={true}
     />
   )
 }

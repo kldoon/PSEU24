@@ -1,18 +1,11 @@
 .container {
   max-width: 500px;
   margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 2rem;
   background: linear-gradient(90deg, #ded9df 0%, #f0eeff 100%);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
-  height: 0;
-  overflow: hidden;
-  transition: height 0.3s ease-in-out;
-}
-
-.container.visible {
-  height: 590px;
 }
 
 .title {
@@ -79,8 +72,18 @@
   transition: background-color 0.3s;
 }
 
+.secondaryButton {
+  background-color: white;
+  color: #333;
+  border: 1px solid #999;
+}
+
 .button:hover {
   background-color: #5750d4;
+}
+
+.secondaryButton:hover{
+  background-color: #ededed;
 }
 
 .error {
