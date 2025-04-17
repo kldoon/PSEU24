@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import validator from 'validator';
@@ -7,6 +7,7 @@ import { EPages } from "../enums";
 const useAddProduct = (INITIAL_FORM: Store.IForm, onAdd: (product: Store.IProduct) => void) => {
   const [errorsList, setErrorsList] = useState<{ [key: string]: string }>({});
   const errors: { [key: string]: string } = {};
+  const formRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
 
   const validate = (key: string, value: string) => {
@@ -24,7 +25,7 @@ const useAddProduct = (INITIAL_FORM: Store.IForm, onAdd: (product: Store.IProduc
         errors[key] = "The price is required (NO FREE PRODUCTS!!!)";
       }
     }
-    if(key === 'category' && value === "") {
+    if (key === 'category' && value === "") {
       errors[key] = "Please choose a category :)"
     }
   }
@@ -54,11 +55,17 @@ const useAddProduct = (INITIAL_FORM: Store.IForm, onAdd: (product: Store.IProduc
 
     onAdd(newProduct);
     toast.success("Product Added Successfully");
+
+    formRef.current?.reset();
+    // if (formRef.current?.style) {
+    //   formRef.current.style.background = "red";
+    // }
     navigate(`/${EPages.LIST}`);
   }
 
   return {
     errorsList,
+    formRef,
     handleSubmit
   }
 }

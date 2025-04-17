@@ -4,6 +4,7 @@ import { ECategory } from '../../enums';
 
 interface IProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  formRef: React.RefObject<HTMLFormElement | null>;
   INITIAL_FORM: Store.IForm;
   errorsList: { [key: string]: string };
 }
@@ -28,6 +29,7 @@ const ProductForm = (props: IProps) => {
     <form
       className={classes.container}
       onSubmit={handleSubmit}
+      ref={props.formRef}
     >
       <h2 className={classes.title}>Add New Product</h2>
       <p className={classes.subtitle}>Please fill all the required product details</p>

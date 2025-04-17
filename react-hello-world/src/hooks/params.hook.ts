@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router";
 const DEFAULT_VALUES = {
   searchTerm: ''
 }
+
 const useParams = () => {
   const [oldParams, setParams] = useSearchParams();
 
