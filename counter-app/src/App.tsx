@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import './App.css';
 import reducer from './reducers/reducer';
 import { IState } from './@types';
@@ -12,11 +12,10 @@ function App() {
 
   // const x = Math.pow(state.counter, state.counter2);
   const x = useMemo(() => {
-    console.log('Calculating...');
+    // console.log('Calculating...');
     return Math.pow(state.counter, state.counter3);
   }, [state.counter, state.counter3]);
   console.log("Result: ", x);
-
 
   const handleCounter4 = () => {
     xx++;
@@ -36,12 +35,16 @@ function App() {
     }
   }, [counter4.current]);
 
+  const calc = useCallback(() => {
+    console.log("Calculating...");
+    const r = 10 + 20;
+    console.log(r);
+  }, []);
 
-  const Y = 10;
-
-  const calc = () => {
-    return 10 + 20;
-  }
+  useEffect(() => {
+    console.log("Calculating... from use Effect");
+    calc();
+  }, [calc]);
 
   return (
     <>
