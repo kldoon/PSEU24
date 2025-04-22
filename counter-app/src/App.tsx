@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import './App.css';
 import reducer from './reducers/reducer';
 import { IState } from './@types';
+import AntdExample from './AntdExample';
 
 const initialState: IState = { counter: 0, counter2: 10, counter3: 90 };
 
@@ -47,8 +48,9 @@ function App() {
   }, [calc]);
 
   return (
-    <>
-      <h1>Counter App (Reducer)</h1>
+    <div>
+      <AntdExample />
+      {/* <h1>Counter App (Reducer)</h1>
       <h2>{state.counter} | {state.counter2} | {state.counter3} | Calc {x} | Counter4 {counter4.current}</h2>
       <div className="card">
         <button onClick={() => {
@@ -72,8 +74,8 @@ function App() {
           type="number"
           onChange={(v) => dispatch({ type: 'set-value', payload: Number(v.currentTarget.value) })}
         />
-      </div>
-    </>
+      </div> */}
+    </div>
   )
 }
 
