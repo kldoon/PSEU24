@@ -1,0 +1,22 @@
+{
+  "name": "hello-express",
+  "version": "1.0.0",
+  "description": "The first express JS app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hello",
+    "express"
+  ],
+  "author": "Khaldoun Halawani",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
