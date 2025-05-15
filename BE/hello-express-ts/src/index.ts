@@ -71,12 +71,16 @@ app.get('/users/user', (req: IGetUsersRequest, res: IGetUsersResponse) => {
 
   if (id) {
     const user = USERS.find(user => user.id === Number(id));
-    users.push(user);
+    if (user) {
+      users.push(user);
+    }
   }
 
   if (email) {
     const user = USERS.find(user => user.email === email);
-    users.push(user);
+    if (user) {
+      users.push(user);
+    }
   }
 
   if (nameQ) {
