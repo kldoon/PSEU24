@@ -1,4 +1,5 @@
 import express from 'express';
+import { IGetUsersRequest, IGetUsersResponse } from './@types/routes.types';
 
 const app = express()
 const port: number = 3000;
@@ -43,9 +44,6 @@ const USERS: Store.IUser[] = [
 
 app.get('/users', (req: express.Request, res: express.Response) => {
   try {
-    // console.log(req.headers);
-    // console.log(req.host);
-
     if (req.headers["x-user-token"]) {
       res.statusCode = 200;
       res.json(USERS);
@@ -57,7 +55,7 @@ app.get('/users', (req: express.Request, res: express.Response) => {
   }
 });
 
-app.get('/users/id/:id', (req: express.Request<Store.IGetUserByIdRequest>, res: express.Response) => {
+app.get('/users/id/:id', (req: express.Request<Store.IGetUserByIdRequestParams>, res: express.Response) => {
   const id = Number(req.params.id);
   const user = USERS.find(user => user.id === id);
   if (user) {
@@ -67,26 +65,31 @@ app.get('/users/id/:id', (req: express.Request<Store.IGetUserByIdRequest>, res: 
   }
 });
 
-app.get('/users/email/:email', (req: express.Request<Store.IGetUserByEmailRequest>, res: express.Response) => {
-  const email = req.params.email;
-  const user = USERS.find(user => user.email === email);
-  if (user) {
-    res.status(200).json(user);
+app.get('/users/user', (req: IGetUsersRequest, res: IGetUsersResponse) => {
+  const { id, email, nameQ } = req.query;
+  let users: Store.IUser[] = [];
+
+  if (id) {
+    const user = USERS.find(user => user.id === Number(id));
+    users.push(user);
+  }
+
+  if (email) {
+    const user = USERS.find(user => user.email === email);
+    users.push(user);
+  }
+
+  if (nameQ) {
+    const foundUsers = USERS.filter(user => user.name.toLowerCase().includes(nameQ.toLowerCase()));
+    users.push(...foundUsers);
+  }
+
+  if (users.length) {
+    res.status(200).json(users);
   } else {
-    res.status(404).send("User Not Found!");
+    res.status(404).send("No Users Found!");
   }
 });
-
-// app.get('/users/:id/asdflkasdf/:email', (req: express.Request, res: express.Response) => {
-//   const id = Number(req.params.id);
-//   const email = req.params.email;
-//   const user = USERS.find(user => user.id === id && user.email === email);
-//   if (user) {
-//     res.status(200).json(user);
-//   } else {
-//     res.status(404).send("User Not Found!");
-//   }
-// });
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.status(204).send();

@@ -8,11 +8,17 @@ declare namespace Store {
 
   }
 
-  export interface IGetUserByEmailRequest {
+  export interface IGetUserByEmailRequestParams {
     email: string;
   }
 
-  export interface IGetUserByIdRequest {
+  export interface IGetUserByIdRequestParams {
     id: string;
   }
-}
+
+  export interface IGetUsersQueryPayload {
+    id?: string;
+    nameQ?: string;
+    email?: string;
+  }
+} 
