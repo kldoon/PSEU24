@@ -1,4 +1,15 @@
 declare namespace Store {
+  interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+    imageURL: string;
+    wishListCounter: number;
+    desc: string;
+    inStock: boolean;
+    category: string;
+  }
+
   export interface IUser {
     id: number;
     name: string;
