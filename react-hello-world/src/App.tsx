@@ -18,6 +18,7 @@ import CartPage from './pages/cart/Cart';
 import HomePage from './pages/home/home';
 import Guard from './components/guard/Guard';
 import { ToastContainer } from 'react-toastify';
+import { fetchProducts } from './services/products.service';
 
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
 
   useEffect(() => {
     if (!state.isInitialized) {
-      dispatch({ type: StoreReducer.EActionTypes.INIT });
+      fetchProducts().then(res => {
+        dispatch({ type: StoreReducer.EActionTypes.INIT, payload: { initialList: res } });
+      });
     }
   }, []);
 

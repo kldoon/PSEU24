@@ -13,7 +13,8 @@ export namespace StoreReducer {
   }
 
   interface IInitAction {
-    type: EActionTypes.INIT
+    type: EActionTypes.INIT,
+    payload: { initialList: Store.IProduct[] }
   }
 
   interface IToggleWishListAction {
