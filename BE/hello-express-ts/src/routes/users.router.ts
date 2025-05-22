@@ -1,6 +1,6 @@
 import express from 'express';
 import { IGetUsersRequest, IGetUsersResponse } from '../@types/routes.types.js';
-import { USERS } from '../data/users.js';
+import userController from '../controllers/user.controller.js';
 
 const router = express.Router();
 
@@ -8,7 +8,8 @@ router.get('/', (req: express.Request, res: express.Response) => {
   try {
     if (req.headers["x-user-token"]) {
       res.statusCode = 200;
-      res.json(USERS);
+      const users = userController.getAllUsers();
+      res.json(users);
     } else {
       res.status(401).send("You are unauthorized to do this!");
     }
@@ -19,7 +20,7 @@ router.get('/', (req: express.Request, res: express.Response) => {
 
 router.get('/id/:id', (req: express.Request<Store.IGetUserByIdRequestParams>, res: express.Response) => {
   const id = Number(req.params.id);
-  const user = USERS.find(user => user.id === id);
+  const user = userController.findUserById(id);
   if (user) {
     res.status(200).json(user);
   } else {
@@ -29,26 +30,7 @@ router.get('/id/:id', (req: express.Request<Store.IGetUserByIdRequestParams>, re
 
 router.get('/find', (req: IGetUsersRequest, res: IGetUsersResponse) => {
   const { id, email, nameQ } = req.query;
-  let users: Store.IUser[] = [];
-
-  if (id) {
-    const user = USERS.find(user => user.id === Number(id));
-    if (user) {
-      users.push(user);
-    }
-  }
-
-  if (email) {
-    const user = USERS.find(user => user.email === email);
-    if (user) {
-      users.push(user);
-    }
-  }
-
-  if (nameQ) {
-    const foundUsers = USERS.filter(user => user.name.toLowerCase().includes(nameQ.toLowerCase()));
-    users.push(...foundUsers);
-  }
+  const users = userController.findUsers({ id: Number(id), email, nameQ });
 
   if (users.length) {
     res.status(200).json(users);

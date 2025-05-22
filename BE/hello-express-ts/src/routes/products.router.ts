@@ -1,22 +1,21 @@
 import express from 'express';
-import { validateProduct } from '../utils/validation.js';
-import { PRODUCTS } from '../data/products.js';
+import productController from '../controllers/products.controller.js'
 
 const router = express.Router();
 
 router.post('/', (req: express.Request<any, any, Store.IProduct>, res: express.Response) => {
   const product = req.body;
-  const errors = validateProduct(product);
-  if (Object.keys(errors).length > 0) {
-    res.status(400).json(errors);
+  const result = productController.createProduct(product);
+  if (!result.success) {
+    res.status(400).json(result.errors);
   } else {
-    PRODUCTS.push(product);
     res.status(201).send();
   }
 });
 
 router.get("/", (req, res) => {
-  res.json(PRODUCTS);
+  const products = productController.getAllProducts();
+  res.json(products);
 })
 
 export default router;
