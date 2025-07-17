@@ -1,6 +1,9 @@
 import express from 'express';
 import { IGetUsersRequest, IGetUsersResponse } from '../@types/routes.types.js';
 import userController from '../controllers/user.controller.js';
+import { USERS } from '../data/users.js';
+import jwt from 'jsonwebtoken';
+import { checkUserToken } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -28,7 +31,7 @@ router.get('/id/:id', (req: express.Request<Store.IGetUserByIdRequestParams>, re
   }
 });
 
-router.get('/find', (req: IGetUsersRequest, res: IGetUsersResponse) => {
+router.get('/find', checkUserToken, (req: IGetUsersRequest, res: IGetUsersResponse) => {
   const { id, email, nameQ } = req.query;
   const users = userController.findUsers({ id: Number(id), email, nameQ });
 
@@ -38,5 +41,21 @@ router.get('/find', (req: IGetUsersRequest, res: IGetUsersResponse) => {
     res.status(404).send("No Users Found!");
   }
 });
+
+router.post('/login', (req: express.Request, res: express.Response) => {
+  const { email, password } = req.body;
+
+  const user = USERS.find(user => user.email === email && user.password === password)
+  if (!user) {
+    res.status(401).send("Invalid email or password!");
+  } else {
+    console.log("user", user);
+    const token = jwt.sign(user, process.env.JWT_SECRET || 'default_secret')
+    res.json({
+      message: "Login successful!",
+      token: token
+    });
+  }
+})
 
 export default router;

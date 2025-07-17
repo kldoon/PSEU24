@@ -14,9 +14,9 @@ declare namespace Store {
     id: number;
     name: string;
     email: string;
+    password: string;
     role: "Admin" | "Moderator" | "User" | "Guest";
     isActive: boolean;
-
   }
 
   export interface IGetUserByEmailRequestParams {
